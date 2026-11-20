@@ -1,11 +1,11 @@
-import { StyleSheet, Text, View } from 'react-native'
+import { StyleSheet, Text, View, TouchableOpacity} from 'react-native'
 
-const AnswerButton = ({ label}) => {
+const AnswerButton = ({ label, onPress }) => {
 
   return (
-    <View>
+    <TouchableOpacity onPress={onPress}>
       <Text>{label}</Text>
-    </View>
+    </TouchableOpacity>
   )
 }
 

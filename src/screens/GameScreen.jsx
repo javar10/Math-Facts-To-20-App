@@ -9,6 +9,8 @@ const GameScreen = () => {
   const difficulty = 'medium';
   const [answer, setAnswer] = useState(null);
   const [problemText, setProblemText] = useState('');
+  const [questionCount, setQuestionCount] = useState(0);
+  const [correctAnswers, setCorrectAnswers] = useState(0);
 
   useEffect(() => {
     const currentOp =
@@ -17,7 +19,7 @@ const GameScreen = () => {
           ? 'addition'
           : 'subtraction'
         : operation;
-        
+
     if (currentOp === 'addition') {
       const pairs = [];
 
@@ -43,35 +45,31 @@ const GameScreen = () => {
       setAnswer(num1 - num2);
       setProblemText(`${num1} - ${num2} = □`);
     }
-  }, []);
+  }, [questionCount]);
 
-  // const generateMathProblem = (maxSum, operation) => {
-  //   // if (operation === 'both') {
-  //   //   // code to randomly choose between addition and subtraction
-  //   // }
-  //   if (operation === 'addition') {
-  //     const sum = Math.floor(Math.random() * (maxSum));
-  //     const num1 = Math.floor(Math.random() * (sum + 1));
-  //     const num2 = sum - num1;
-  //     setAnswer(sum);
-  //     setProblemText(`${num1} + ${num2} = □`);
-  //   }
-  //   // else if (operation === 'subtraction') {
-  //   //   const num1 = Math.floor(Math.random() * (maxSum + 1));
-  //   //   const num2 = Math.floor(Math.random() * (num1 + 1));
-  //   //   setAnswer(num1 - num2);
-  //   //   return `${num1} - ${num2} = □`;
-  //   // }
-  // }
+  const generateNewProblem = (selectedAnswer) => {
+    setQuestionCount((prev) => prev + 1);
+    if (selectedAnswer === answer) {
+      setCorrectAnswers((prev) => prev + 1);
+    }
+  };
+
   return (
     <View>
       <Text>
         {problemText}
-        {/* {answer !== null && <Text>Answer: {answer}</Text>} */}
       </Text>
+      <Text>Answer: {answer}</Text>
+      <Text>Question Count: {questionCount}</Text>
+      <Text>Correct Answers: {correctAnswers}</Text>
       <View>
         {answerChoices.map((choice) => (
-          <AnswerButton key={choice} label={choice} />
+          <AnswerButton
+            key={choice}
+            label={choice}
+            answer={answer}
+            onPress={() => { generateNewProblem(choice) }}
+          />
         ))}
       </View>
       <View>
