@@ -2,6 +2,7 @@ import { StyleSheet, Text, View, Image } from 'react-native'
 import { useState, useEffect } from 'react'
 import AnswerButton from '../components/AnswerButton'
 import answerChoices from '../constants/answerChoices'
+import CountdownTimer from '../components/CountDownTimer'
 
 const GameScreen = () => {
   const maxSum = 10;
@@ -78,7 +79,7 @@ const GameScreen = () => {
           style={styles.turkeyImage}
         />
       </View>
-      <Text>timer</Text>
+      <CountdownTimer></CountdownTimer>
       <Text>pause button</Text>
       {/* 
       -math problem, randomly generated based on settings
