@@ -1,7 +1,8 @@
 import { StyleSheet, Text, View } from 'react-native'
 import { useState, useEffect } from 'react'
+import COLORS from '../constants/colors'
 
-const MathProblem = ({ setAnswer, questionCount}) => {
+const MathProblem = ({ setAnswer, questionCount }) => {
     const maxSum = 10;
     const operation = 'both';
     const [problemText, setProblemText] = useState('');
@@ -42,7 +43,7 @@ const MathProblem = ({ setAnswer, questionCount}) => {
     }, [questionCount]);
 
     return (
-        <Text>
+        <Text style={styles.text}>
             {problemText}
         </Text>
     )
@@ -50,4 +51,13 @@ const MathProblem = ({ setAnswer, questionCount}) => {
 
 export default MathProblem
 
-const styles = StyleSheet.create({})
+const styles = StyleSheet.create({
+    text: {
+        fontSize: 64,
+        fontWeight: '800',
+        color: COLORS.textPrimary,
+        textAlign: 'center',
+        letterSpacing: -0.5,
+        marginVertical: 16,
+    },
+})

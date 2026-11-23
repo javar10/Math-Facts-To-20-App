@@ -1,5 +1,5 @@
-import { StyleSheet, Text, View, Image } from 'react-native'
-import { useState, useEffect } from 'react'
+import { StyleSheet, Text, View } from 'react-native'
+import { useState } from 'react'
 import { SafeAreaView } from 'react-native-safe-area-context'
 import MathProblem from '../components/MathProblem'
 import AnswerButton from '../components/AnswerButton'
@@ -7,6 +7,7 @@ import answerChoices from '../constants/answerChoices'
 import TurkeyAnimation from '../components/TurkeyAnimation'
 import CountdownTimer from '../components/CountdownTimer'
 import EndRoundModal from '../components/EndRoundModal'
+import COLORS from '../constants/colors'
 
 
 const GameScreen = () => {
@@ -38,15 +39,16 @@ const GameScreen = () => {
           onPlayAgain={handlePlayAgain}
           onExit={() => navigation?.goBack()}
         />
-        {isRunning ? <View>
+        {/* {isRunning ?  */}
+        <View>
           <MathProblem
             setAnswer={setAnswer}
             questionCount={questionCount}
           />
-          <Text>Answer: {answer}</Text>
+          {/* <Text>Answer: {answer}</Text>
           <Text>Question Count: {questionCount}</Text>
-          <Text>Correct Answers: {correctAnswers}</Text>
-          <View>
+          <Text>Correct Answers: {correctAnswers}</Text> */}
+          <View style={styles.choicesContainer}>
             {answerChoices.map((choice) => (
               <AnswerButton
                 key={choice}
@@ -56,7 +58,8 @@ const GameScreen = () => {
               />
             ))}
           </View>
-        </View> : null}
+        </View> 
+        {/* // : null} */}
         <TurkeyAnimation />
 
         <CountdownTimer
@@ -67,7 +70,6 @@ const GameScreen = () => {
           correctAnswers={correctAnswers}
           difficulty={difficulty}
         />
-        <Text>pause button</Text>
         {/* 
       -math problem, randomly generated based on settings
       -array of numbers as answer choices, based on settings
@@ -87,12 +89,27 @@ export default GameScreen
 const styles = StyleSheet.create({
   safeArea: {
     flex: 1,
+    backgroundColor: COLORS.background,
   },
   screen: {
     flex: 1,
     justifyContent: 'space-between', // Distributes top, middle, and bottom across full height
     paddingHorizontal: 20,
     paddingVertical: 12,
+  },
+  choicesContainer: {
+    flexDirection: 'row',
+    flexWrap: 'wrap',
+    justifyContent: 'center',
+    alignItems: 'center',
+    gap: 16,
+    width: '100%',                     // Controls how wide the horizontal divider lines stretch
+    alignSelf: 'center',              // Centers the container and lines on the screen
+    paddingVertical: 16,              // Space between the top/bottom lines and the buttons
+    paddingHorizontal: 8,
+    borderTopWidth: 1,                // Thin horizontal line above (or use StyleSheet.hairlineWidth)
+    borderBottomWidth: 1,             // Thin horizontal line below
+    borderColor: COLORS.textSecondary // Adjust to match your theme (e.g., COLORS.textSecondary)
   },
 
 })

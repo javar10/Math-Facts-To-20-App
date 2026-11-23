@@ -3,6 +3,7 @@ import { StyleSheet, Text, View} from 'react-native';
 import { SafeAreaProvider } from 'react-native-safe-area-context';
 import OptionsScreen from './src/screens/OptionsScreen';
 import GameScreen from './src/screens/GameScreen';
+import COLORS from './src/constants/colors';
 
 
 export default function App() {
@@ -18,7 +19,7 @@ export default function App() {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: '#fff',
+    backgroundColor: COLORS.background,
     alignItems: 'center',
     justifyContent: 'center',
   },

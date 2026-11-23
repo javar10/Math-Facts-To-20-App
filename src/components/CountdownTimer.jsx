@@ -1,14 +1,9 @@
 import React, { useState, useEffect, useRef } from 'react';
-import {
-  View,
-  Text,
-  TouchableOpacity,
-  Animated,
-  Easing,
-  StyleSheet,
-} from 'react-native';
+import { View, Text, TouchableOpacity, Animated, Easing, StyleSheet,} from 'react-native';
+import COLORS from '../constants/colors';
 
-const DURATION_SECONDS = 60;
+
+const DURATION_SECONDS = 15;
 
 const CountdownTimer = ({
   isTimeUp,
@@ -95,7 +90,7 @@ const CountdownTimer = ({
     outputRange: ['0%', '100%'],
   });
 
-  const barColor = secondsLeft <= 10 ? '#EF4444' : '#3B82F6';
+  const barColor = secondsLeft <= 10 ? COLORS.secondary : COLORS.primary;
 
   return (
     <View style={styles.container}>
@@ -139,7 +134,7 @@ const styles = StyleSheet.create({
   timerText: {
     fontSize: 40,
     fontWeight: '700',
-    color: '#111827',
+    color: COLORS.textPrimary,
     marginBottom: 12,
     fontVariant: ['tabular-nums'],
   },
@@ -160,13 +155,13 @@ const styles = StyleSheet.create({
     gap: 12,
   },
   button: {
-    backgroundColor: '#3B82F6',
+    backgroundColor: COLORS.accent,
     paddingVertical: 10,
     paddingHorizontal: 24,
     borderRadius: 8,
   },
   resetButton: {
-    backgroundColor: '#6B7280',
+    backgroundColor: COLORS.secondary,
   },
   buttonText: {
     color: '#FFFFFF',
