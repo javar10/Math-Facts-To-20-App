@@ -1,52 +1,21 @@
 import { StyleSheet, Text, View, Image } from 'react-native'
 import { useState, useEffect } from 'react'
+import { SafeAreaView } from 'react-native-safe-area-context'
+import MathProblem from '../components/MathProblem'
 import AnswerButton from '../components/AnswerButton'
 import answerChoices from '../constants/answerChoices'
-import CountdownTimer from '../components/CountDownTimer'
+import TurkeyAnimation from '../components/TurkeyAnimation'
+import CountdownTimer from '../components/CountdownTimer'
+import EndRoundModal from '../components/EndRoundModal'
+
 
 const GameScreen = () => {
-  const maxSum = 10;
-  const operation = 'both';
-  const difficulty = 'medium';
+  const difficulty = 5;
+  const [isRunning, setIsRunning] = useState(false);
+  const [isTimeUp, setIsTimeUp] = useState(false);
   const [answer, setAnswer] = useState(null);
-  const [problemText, setProblemText] = useState('');
   const [questionCount, setQuestionCount] = useState(0);
   const [correctAnswers, setCorrectAnswers] = useState(0);
-
-  useEffect(() => {
-    const currentOp =
-      operation === 'both'
-        ? Math.random() < 0.5
-          ? 'addition'
-          : 'subtraction'
-        : operation;
-
-    if (currentOp === 'addition') {
-      const pairs = [];
-
-      for (let num1 = 0; num1 <= maxSum; num1++) {
-        for (let num2 = 0; num2 <= maxSum - num1; num2++) {
-          pairs.push([num1, num2]);
-        }
-      }
-      const [num1, num2] = pairs[Math.floor(Math.random() * pairs.length)];
-
-      setAnswer(num1 + num2);
-      setProblemText(`${num1} + ${num2} = □`);
-    } else if (currentOp === 'subtraction') {
-      const pairs = [];
-
-      for (let num1 = 0; num1 <= maxSum; num1++) {
-        for (let num2 = 0; num2 <= num1; num2++) {
-          pairs.push([num1, num2]);
-        }
-      }
-      const [num1, num2] = pairs[Math.floor(Math.random() * pairs.length)];
-
-      setAnswer(num1 - num2);
-      setProblemText(`${num1} - ${num2} = □`);
-    }
-  }, [questionCount]);
 
   const generateNewProblem = (selectedAnswer) => {
     setQuestionCount((prev) => prev + 1);
@@ -55,33 +24,51 @@ const GameScreen = () => {
     }
   };
 
+  const handlePlayAgain = () => {
+    setCorrectAnswers(0);
+    setIsTimeUp(false);
+  };
+
   return (
-    <View>
-      <Text>
-        {problemText}
-      </Text>
-      <Text>Answer: {answer}</Text>
-      <Text>Question Count: {questionCount}</Text>
-      <Text>Correct Answers: {correctAnswers}</Text>
-      <View>
-        {answerChoices.map((choice) => (
-          <AnswerButton
-            key={choice}
-            label={choice}
-            answer={answer}
-            onPress={() => { generateNewProblem(choice) }}
-          />
-        ))}
-      </View>
-      <View>
-        <Image
-          source={require('../assets/turkey.jpeg')}
-          style={styles.turkeyImage}
+    <SafeAreaView style={styles.safeArea}>
+      <View style={styles.screen}>
+        <EndRoundModal
+          visible={isTimeUp || correctAnswers === difficulty}
+          correctAnswers={correctAnswers}
+          onPlayAgain={handlePlayAgain}
+          onExit={() => navigation?.goBack()}
         />
-      </View>
-      <CountdownTimer></CountdownTimer>
-      <Text>pause button</Text>
-      {/* 
+        {isRunning ? <View>
+          <MathProblem
+            setAnswer={setAnswer}
+            questionCount={questionCount}
+          />
+          <Text>Answer: {answer}</Text>
+          <Text>Question Count: {questionCount}</Text>
+          <Text>Correct Answers: {correctAnswers}</Text>
+          <View>
+            {answerChoices.map((choice) => (
+              <AnswerButton
+                key={choice}
+                label={choice}
+                answer={answer}
+                onPress={() => { generateNewProblem(choice) }}
+              />
+            ))}
+          </View>
+        </View> : null}
+        <TurkeyAnimation />
+
+        <CountdownTimer
+          isTimeUp={isTimeUp}
+          setIsTimeUp={setIsTimeUp}
+          isRunning={isRunning}
+          setIsRunning={setIsRunning}
+          correctAnswers={correctAnswers}
+          difficulty={difficulty}
+        />
+        <Text>pause button</Text>
+        {/* 
       -math problem, randomly generated based on settings
       -array of numbers as answer choices, based on settings
       -turkey image that tries to excape and moves with each correct answer
@@ -90,10 +77,22 @@ const GameScreen = () => {
       ----can only be paused once per game or the timer will continue to run in the background
 
       */}
-    </View>
+      </View>
+    </SafeAreaView>
   )
 }
 
 export default GameScreen
 
-const styles = StyleSheet.create({})
+const styles = StyleSheet.create({
+  safeArea: {
+    flex: 1,
+  },
+  screen: {
+    flex: 1,
+    justifyContent: 'space-between', // Distributes top, middle, and bottom across full height
+    paddingHorizontal: 20,
+    paddingVertical: 12,
+  },
+
+})

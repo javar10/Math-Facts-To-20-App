@@ -1,17 +1,17 @@
 import { StatusBar } from 'expo-status-bar';
-import { StyleSheet, Text, View } from 'react-native';
+import { StyleSheet, Text, View} from 'react-native';
+import { SafeAreaProvider } from 'react-native-safe-area-context';
 import OptionsScreen from './src/screens/OptionsScreen';
 import GameScreen from './src/screens/GameScreen';
 
 
 export default function App() {
   return (
-    <View style={styles.container}>
-      <OptionsScreen />
+    <SafeAreaProvider style={styles.container}>
+      {/* <OptionsScreen /> */}
       <GameScreen />
-      <Text>Open up App.js to start working on your app!</Text>
       <StatusBar style="auto" />
-    </View>
+    </SafeAreaProvider>
   );
 }
 
