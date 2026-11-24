@@ -17,6 +17,8 @@ const CountdownTimer = ({
   const [secondsLeft, setSecondsLeft] = useState(DURATION_SECONDS);
   const [hasStarted, setHasStarted] = useState(false);
 
+  // updating the pause/resume instead of pause/start. 
+
   const progress = useRef(new Animated.Value(1)).current;
 
   // 1. Stop the timer immediately when the player wins the round
@@ -75,6 +77,7 @@ const CountdownTimer = ({
       setIsRunning(true);
     } else {
       setIsRunning((prev) => !prev);
+      setHasStarted(true);
     }
   };
 
@@ -113,18 +116,18 @@ const CountdownTimer = ({
       <View style={styles.controls}>
         <TouchableOpacity style={styles.button} onPress={handleStartPause}>
           <Text style={styles.buttonText}>
-            {isRunning ? 'Pause' : secondsLeft === 0 ? 'Restart' : 'Start'}
+            {isRunning ? 'Pause' : hasStarted ? 'Resume' : 'Start'}
           </Text>
         </TouchableOpacity>
 
-        {isRunning && (
+        {isRunning || hasStarted ? (
           <TouchableOpacity
             style={[styles.button, styles.resetButton]}
             onPress={handleReset}
           >
             <Text style={styles.buttonText}>Reset</Text>
           </TouchableOpacity>
-        )}
+        ): null}
       </View>
     </View>
   );
