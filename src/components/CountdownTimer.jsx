@@ -1,5 +1,5 @@
 import React, { useState, useEffect, useRef } from 'react';
-import { View, Text, TouchableOpacity, Animated, Easing, StyleSheet,} from 'react-native';
+import { View, Text, TouchableOpacity, Animated, Easing, StyleSheet, } from 'react-native';
 import COLORS from '../constants/colors';
 
 
@@ -11,9 +11,11 @@ const CountdownTimer = ({
   isRunning,
   setIsRunning,
   correctAnswers,
+  setCorrectAnswers,
   difficulty,
 }) => {
   const [secondsLeft, setSecondsLeft] = useState(DURATION_SECONDS);
+  const [hasStarted, setHasStarted] = useState(false);
 
   const progress = useRef(new Animated.Value(1)).current;
 
@@ -79,6 +81,8 @@ const CountdownTimer = ({
   const handleReset = () => {
     setIsRunning(false);
     setSecondsLeft(DURATION_SECONDS);
+    setCorrectAnswers(0);
+    setHasStarted(false);
     if (setIsTimeUp) {
       setIsTimeUp(false);
     }
@@ -94,16 +98,17 @@ const CountdownTimer = ({
 
   return (
     <View style={styles.container}>
-      <Text style={styles.timerText}>{secondsLeft}s</Text>
+      {/* <Text style={styles.timerText}>{secondsLeft}s</Text> */}
 
-      <View style={styles.track}>
-        <Animated.View
-          style={[
-            styles.bar,
-            { width: barWidth, backgroundColor: barColor },
-          ]}
-        />
-      </View>
+      {isRunning && (
+        <View style={styles.track}>
+          <Animated.View
+            style={[
+              styles.bar,
+              { width: barWidth, backgroundColor: barColor },
+            ]}
+          />
+        </View>)}
 
       <View style={styles.controls}>
         <TouchableOpacity style={styles.button} onPress={handleStartPause}>
@@ -112,12 +117,14 @@ const CountdownTimer = ({
           </Text>
         </TouchableOpacity>
 
-        <TouchableOpacity
-          style={[styles.button, styles.resetButton]}
-          onPress={handleReset}
-        >
-          <Text style={styles.buttonText}>Reset</Text>
-        </TouchableOpacity>
+        {isRunning && (
+          <TouchableOpacity
+            style={[styles.button, styles.resetButton]}
+            onPress={handleReset}
+          >
+            <Text style={styles.buttonText}>Reset</Text>
+          </TouchableOpacity>
+        )}
       </View>
     </View>
   );

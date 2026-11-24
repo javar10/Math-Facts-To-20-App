@@ -1,7 +1,8 @@
 import React, { useEffect } from 'react';
 import { View, Text, Modal, TouchableOpacity, StyleSheet } from 'react-native';
+import COLORS from '../constants/colors';
 
-const EndRoundModal = ({ visible, correctAnswers, onPlayAgain, onExit }) => {
+const EndRoundModal = ({ visible, correctAnswers, difficulty, onPlayAgain, onExit }) => {
   useEffect(() => {
     if (visible) {
       console.log('Round ended! Saving correct answers:', correctAnswers);
@@ -12,9 +13,14 @@ const EndRoundModal = ({ visible, correctAnswers, onPlayAgain, onExit }) => {
     <Modal visible={visible} transparent animationType="fade">
       <View style={styles.overlay}>
         <View style={styles.card}>
-          <Text style={styles.title}>Time's Up!</Text>
-          <Text style={styles.scoreLabel}>Final Score</Text>
-          <Text style={styles.scoreValue}>{correctAnswers}</Text>
+
+          {correctAnswers === difficulty
+            ? <Text style={styles.title}>You saved the turkey!</Text>
+            : <Text style={styles.title}>Oh no! Looks like it's turkey for dinner. Try again!</Text>
+          }
+
+          {/* <Text style={styles.scoreLabel}>Final Score</Text>
+          <Text style={styles.scoreValue}>{correctAnswers}</Text> */}
 
           <TouchableOpacity style={styles.primaryButton} onPress={onPlayAgain}>
             <Text style={styles.buttonText}>Play Again</Text>
@@ -43,7 +49,7 @@ const styles = StyleSheet.create({
   },
   card: {
     width: '100%',
-    backgroundColor: '#FFFFFF',
+    backgroundColor: COLORS.background,
     borderRadius: 16,
     padding: 28,
     alignItems: 'center',
@@ -51,8 +57,9 @@ const styles = StyleSheet.create({
   title: {
     fontSize: 28,
     fontWeight: '800',
-    color: '#111827',
-    marginBottom: 8,
+    color: COLORS.textPrimary,
+    marginBottom: 24,
+    textAlign: 'center',
   },
   scoreLabel: {
     fontSize: 16,
@@ -66,7 +73,7 @@ const styles = StyleSheet.create({
   },
   primaryButton: {
     width: '100%',
-    backgroundColor: '#3B82F6',
+    backgroundColor: COLORS.accent,
     paddingVertical: 14,
     borderRadius: 10,
     alignItems: 'center',

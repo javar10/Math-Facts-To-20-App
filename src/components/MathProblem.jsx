@@ -4,7 +4,7 @@ import COLORS from '../constants/colors'
 
 const MathProblem = ({ setAnswer, questionCount }) => {
     const maxSum = 10;
-    const operation = 'both';
+    const operation = 'addition';
     const [problemText, setProblemText] = useState('');
 
     useEffect(() => {

@@ -36,31 +36,37 @@ const GameScreen = () => {
         <EndRoundModal
           visible={isTimeUp || correctAnswers === difficulty}
           correctAnswers={correctAnswers}
+          difficulty={difficulty}
           onPlayAgain={handlePlayAgain}
           onExit={() => navigation?.goBack()}
         />
-        {/* {isRunning ?  */}
-        <View>
-          <MathProblem
-            setAnswer={setAnswer}
-            questionCount={questionCount}
-          />
-          {/* <Text>Answer: {answer}</Text>
+        <TurkeyAnimation
+          correctAnswers={correctAnswers}
+          difficulty={difficulty}
+        />
+
+        {isRunning ?
+          <View>
+            <MathProblem
+              setAnswer={setAnswer}
+              questionCount={questionCount}
+            />
+            {/* <Text>Answer: {answer}</Text>
           <Text>Question Count: {questionCount}</Text>
           <Text>Correct Answers: {correctAnswers}</Text> */}
-          <View style={styles.choicesContainer}>
-            {answerChoices.map((choice) => (
-              <AnswerButton
-                key={choice}
-                label={choice}
-                answer={answer}
-                onPress={() => { generateNewProblem(choice) }}
-              />
-            ))}
+            <View style={styles.choicesContainer}>
+              {answerChoices.map((choice) => (
+                <AnswerButton
+                  key={choice}
+                  label={choice}
+                  answer={answer}
+                  onPress={() => { generateNewProblem(choice) }}
+                />
+              ))}
+            </View>
           </View>
-        </View> 
-        {/* // : null} */}
-        <TurkeyAnimation />
+          : null}
+
 
         <CountdownTimer
           isTimeUp={isTimeUp}
@@ -68,6 +74,7 @@ const GameScreen = () => {
           isRunning={isRunning}
           setIsRunning={setIsRunning}
           correctAnswers={correctAnswers}
+          setCorrectAnswers={setCorrectAnswers}
           difficulty={difficulty}
         />
         {/* 
