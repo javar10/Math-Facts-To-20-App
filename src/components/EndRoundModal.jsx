@@ -17,8 +17,15 @@ const EndRoundModal = ({ visible, roundResult, correctAnswers, difficulty, onPla
         <View style={styles.card}>
 
           {roundResult === 'win'
-            ? <Text style={styles.title}>You saved the turkey!</Text>
-            : <Text style={styles.title}>Oh no! Looks like it's turkey for dinner. Try again!</Text>
+            ? <View>
+              <Text style={styles.title}>You saved the turkey!</Text>
+              </View>
+            : 
+            <View>
+              <Text style={styles.title}>Oh no! 
+                Looks like it's turkey for dinner. 
+                Try again!</Text>
+            </View>
           }
 
           {/* <Text style={styles.scoreLabel}>Final Score</Text>

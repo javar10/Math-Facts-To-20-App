@@ -3,7 +3,7 @@ import { View, Text, TouchableOpacity, Animated, Easing, StyleSheet, } from 'rea
 import COLORS from '../constants/colors';
 
 
-const DURATION_SECONDS = 300;
+const DURATION_SECONDS = 3;
 
 const CountdownTimer = ({
   isTimeUp,
@@ -51,7 +51,6 @@ const CountdownTimer = ({
         setSecondsLeft((prev) => {
           if (prev <= 1) {
             clearInterval(interval);
-            setIsRunning(false);
             return 0;
           }
           return prev - 1;
@@ -66,8 +65,11 @@ const CountdownTimer = ({
 
   // 4. Safely notify GameScreen after secondsLeft hits 0
   useEffect(() => {
-    if (secondsLeft === 0 && setIsTimeUp) {
-      setIsTimeUp(true);
+    if (secondsLeft === 0) {
+      setIsRunning(false);
+      if (setIsTimeUp) {
+        setIsTimeUp(true);
+      }
     }
   }, [secondsLeft]);
 
