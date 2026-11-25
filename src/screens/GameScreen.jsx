@@ -88,7 +88,7 @@ const GameScreen = () => {
             </View>
           </View>
           : null}
-          
+
         <CountdownTimer
           isTimeUp={isTimeUp}
           setIsTimeUp={setIsTimeUp}
@@ -135,11 +135,11 @@ const styles = StyleSheet.create({
     gap: 16,
     width: '100%',                     // Controls how wide the horizontal divider lines stretch
     alignSelf: 'center',              // Centers the container and lines on the screen
-    paddingVertical: 16,              // Space between the top/bottom lines and the buttons
+    paddingVertical: 8,              // Space between the top/bottom lines and the buttons
     paddingHorizontal: 8,
-    borderTopWidth: 1,                // Thin horizontal line above (or use StyleSheet.hairlineWidth)
-    borderBottomWidth: 1,             // Thin horizontal line below
-    borderColor: COLORS.textSecondary // Adjust to match your theme (e.g., COLORS.textSecondary)
+    // borderTopWidth: 1,                // Thin horizontal line above (or use StyleSheet.hairlineWidth)
+    // borderBottomWidth: 1,             // Thin horizontal line below
+    // borderColor: COLORS.textSecondary // Adjust to match your theme (e.g., COLORS.textSecondary)
   },
 
 })

@@ -81,6 +81,7 @@ export default TurkeyAnimation;
 const styles = StyleSheet.create({
   shadowWrapper: {
     // marginTop: 36,
+    marginVertical: 8,
     borderRadius: 12,
     backgroundColor: '#FFFFFF',
     // Standard clean drop shadow

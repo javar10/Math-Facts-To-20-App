@@ -58,7 +58,7 @@ const styles = StyleSheet.create({
     alignItems: 'center',
   },
   buttonText: {
-    color: COLORS.textSecondary,
+    color: COLORS.textPrimary,
     fontSize: 36,
     fontWeight: '800',
     fontVariant: ['tabular-nums'],

@@ -58,6 +58,6 @@ const styles = StyleSheet.create({
         color: COLORS.textPrimary,
         textAlign: 'center',
         letterSpacing: -0.5,
-        marginVertical: 16,
+        marginVertical: 8,
     },
 })

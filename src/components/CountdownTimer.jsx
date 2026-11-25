@@ -137,9 +137,10 @@ export default CountdownTimer;
 
 const styles = StyleSheet.create({
   container: {
-    width: '100%',
+    width: '80%',
     alignItems: 'center',
     padding: 16,
+    marginTop: 8,
   },
   timerText: {
     fontSize: 40,
@@ -150,7 +151,7 @@ const styles = StyleSheet.create({
   },
   track: {
     width: '100%',
-    height: 16,
+    height: 24,
     backgroundColor: '#E5E7EB',
     borderRadius: 8,
     overflow: 'hidden',
@@ -174,7 +175,7 @@ const styles = StyleSheet.create({
     backgroundColor: COLORS.secondary,
   },
   buttonText: {
-    color: '#FFFFFF',
+    color: COLORS.textSecondary,
     fontSize: 16,
     fontWeight: '600',
   },
