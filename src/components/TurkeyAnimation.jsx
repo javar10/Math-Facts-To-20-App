@@ -1,25 +1,77 @@
-import React from 'react';
-import { View, Image, StyleSheet } from 'react-native';
+import React, { useEffect, useRef } from 'react';
+import {
+  View,
+  Image,
+  Animated,
+  StyleSheet,
+  useWindowDimensions,
+} from 'react-native';
 
-const MAX_SIZE = 200; // Size at 0 correct answers
+const FRAME_INNER_TRIM = '#D97706'; // Warm orange/amber border
 
 const TurkeyAnimation = ({ correctAnswers, difficulty }) => {
-  // Calculate progress between 0 and 1
-  const safeDifficulty = difficulty > 0 ? difficulty : 10;
-  const progress = Math.min(Math.max(correctAnswers / safeDifficulty, 0), 1);
+  const { width, height } = useWindowDimensions();
 
-  // Shrink linearly from MAX_SIZE (200) down to 0
-  const currentSize = MAX_SIZE * (1 - progress);
+  // Scale dynamically: 80% of screen width, capped so MathProblem & Timer still fit comfortably
+  const CONTAINER_SIZE = Math.min(width * 0.8, height * 0.42, 360);
+
+  const START_BOTTOM = CONTAINER_SIZE * 0.2;      // 20% up from the bottom
+  const END_BOTTOM = CONTAINER_SIZE * 0.77;       // Stops at 77% up from the bottom
+  const START_TURKEY_SIZE = CONTAINER_SIZE * 0.8; // Keeps the head inside the frame at start
+
+  const safeDifficulty = difficulty > 0 ? difficulty : 10;
+  const targetProgress = Math.min(Math.max(correctAnswers / safeDifficulty, 0), 1);
+
+  const animatedProgress = useRef(new Animated.Value(targetProgress)).current;
+
+  useEffect(() => {
+    Animated.timing(animatedProgress, {
+      toValue: targetProgress,
+      duration: 300,
+      useNativeDriver: false,
+    }).start();
+  }, [targetProgress]);
+
+  // Shrink smoothly from START_TURKEY_SIZE down to 0px
+  const animatedSize = animatedProgress.interpolate({
+    inputRange: [0, 1],
+    outputRange: [START_TURKEY_SIZE, 0],
+  });
+
+  // Move from 20% up to 80% up
+  const animatedBottom = animatedProgress.interpolate({
+    inputRange: [0, 1],
+    outputRange: [START_BOTTOM, END_BOTTOM],
+  });
 
   return (
-    <View style={styles.container}>
-      {currentSize > 0 && (
+    <View style={styles.shadowWrapper}>
+      <View
+        style={[
+          styles.container,
+          { width: CONTAINER_SIZE, height: CONTAINER_SIZE },
+        ]}
+      >
         <Image
-          source={require('../assets/turkey.jpeg')}
-          style={{ width: currentSize, height: currentSize }}
-          resizeMode="contain"
+          style={[
+            styles.background,
+            { width: CONTAINER_SIZE, height: CONTAINER_SIZE },
+          ]}
+          source={require('../assets/background.png')}
         />
-      )}
+        <Animated.Image
+          source={require('../assets/turkey_back.png')}
+          resizeMode="contain"
+          style={[
+            styles.turkey,
+            {
+              width: animatedSize,
+              height: animatedSize,
+              bottom: animatedBottom,
+            },
+          ]}
+        />
+      </View>
     </View>
   );
 };
@@ -27,10 +79,28 @@ const TurkeyAnimation = ({ correctAnswers, difficulty }) => {
 export default TurkeyAnimation;
 
 const styles = StyleSheet.create({
+  shadowWrapper: {
+    // marginTop: 36,
+    borderRadius: 12,
+    backgroundColor: '#FFFFFF',
+    // Standard clean drop shadow
+    shadowColor: '#000000',
+    shadowOffset: { width: 0, height: 4 },
+    shadowOpacity: 0.22,
+    shadowRadius: 6,
+    elevation: 6,
+  },
   container: {
-    width: MAX_SIZE,
-    height: MAX_SIZE,
-    justifyContent: 'center', // Keeps the shrinking image centered
     alignItems: 'center',
+    overflow: 'hidden',
+    borderRadius: 12,
+    borderWidth: 2.5,
+    borderColor: FRAME_INNER_TRIM,
+  },
+  background: {
+    position: 'absolute',
+  },
+  turkey: {
+    position: 'absolute',
   },
 });

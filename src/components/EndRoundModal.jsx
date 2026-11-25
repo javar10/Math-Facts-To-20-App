@@ -2,19 +2,21 @@ import React, { useEffect } from 'react';
 import { View, Text, Modal, TouchableOpacity, StyleSheet } from 'react-native';
 import COLORS from '../constants/colors';
 
-const EndRoundModal = ({ visible, correctAnswers, difficulty, onPlayAgain, onExit }) => {
-  useEffect(() => {
-    if (visible) {
-      console.log('Round ended! Saving correct answers:', correctAnswers);
-    }
-  }, [visible]);
+const EndRoundModal = ({ visible, roundResult, correctAnswers, difficulty, onPlayAgain, onExit }) => {
+  
+  
+  // useEffect(() => {
+  //   if (visible) {
+  //     console.log('Round ended! Saving correct answers:', correctAnswers);
+  //   }
+  // }, [visible]);
 
   return (
     <Modal visible={visible} transparent animationType="fade">
       <View style={styles.overlay}>
         <View style={styles.card}>
 
-          {correctAnswers === difficulty
+          {roundResult === 'win'
             ? <Text style={styles.title}>You saved the turkey!</Text>
             : <Text style={styles.title}>Oh no! Looks like it's turkey for dinner. Try again!</Text>
           }
