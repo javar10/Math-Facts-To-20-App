@@ -7,11 +7,11 @@ import answerChoices from '../constants/answerChoices'
 import TurkeyAnimation from '../components/TurkeyAnimation'
 import CountdownTimer from '../components/CountdownTimer'
 import EndRoundModal from '../components/EndRoundModal'
-import COLORS from '../constants/colors'
+import {COLORS} from '../constants/theme'
 
 
 const GameScreen = () => {
-  const difficulty = 10;
+  const difficulty = 1;
   const [isRunning, setIsRunning] = useState(false);
   const [isTimeUp, setIsTimeUp] = useState(false);
   const [answer, setAnswer] = useState(null);

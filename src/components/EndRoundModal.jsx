@@ -1,10 +1,10 @@
 import React, { useEffect } from 'react';
-import { View, Text, Modal, TouchableOpacity, StyleSheet } from 'react-native';
-import COLORS from '../constants/colors';
+import { View, Text, Modal, TouchableOpacity, StyleSheet, Image } from 'react-native';
+import {COLORS, FONTS} from '../constants/theme';
 
 const EndRoundModal = ({ visible, roundResult, correctAnswers, difficulty, onPlayAgain, onExit }) => {
-  
-  
+
+
   // useEffect(() => {
   //   if (visible) {
   //     console.log('Round ended! Saving correct answers:', correctAnswers);
@@ -18,13 +18,27 @@ const EndRoundModal = ({ visible, roundResult, correctAnswers, difficulty, onPla
 
           {roundResult === 'win'
             ? <View>
-              <Text style={styles.title}>You saved the turkey!</Text>
-              </View>
-            : 
+              <Text style={styles.title}>
+                You saved the turkey!
+              </Text>
+              <Image
+                source={require('../assets/turkey_happy.png')}
+                style={styles.image}
+                resizeMode="contain"
+              />
+            </View>
+            :
             <View>
-              <Text style={styles.title}>Oh no! 
-                Looks like it's turkey for dinner. 
-                Try again!</Text>
+              <Text style={styles.title}>
+                Oh no! {'\n'}
+                Looks like it's turkey for dinner.{'\n'}
+                {/* Try again! */}
+              </Text>
+              <Image
+                source={require('../assets/turkey_dinner.png')}
+                style={styles.image}
+                resizeMode="contain"
+              />
             </View>
           }
 
@@ -64,45 +78,54 @@ const styles = StyleSheet.create({
     alignItems: 'center',
   },
   title: {
+    fontFamily: FONTS.bold,
     fontSize: 28,
     fontWeight: '800',
     color: COLORS.textPrimary,
-    marginBottom: 24,
+    // marginBottom: 24,
     textAlign: 'center',
+    lineHeight: 36,
   },
-  scoreLabel: {
-    fontSize: 16,
-    color: '#6B7280',
+  // scoreLabel: {
+  //   fontSize: 16,
+  //   color: '#6B7280',
+  // },
+  // scoreValue: {
+  //   fontSize: 48,
+  //   fontWeight: '700',
+  //   color: '#3B82F6',
+  //   marginVertical: 16,
+  // },
+  image: {
+    width: 180,
+    height: 180,
+    alignSelf: 'center',
+    marginBottom: 24,
   },
-  scoreValue: {
-    fontSize: 48,
-    fontWeight: '700',
-    color: '#3B82F6',
-    marginVertical: 16,
-  },
+
   primaryButton: {
-    width: '100%',
-    backgroundColor: COLORS.accent,
-    paddingVertical: 14,
-    borderRadius: 10,
     alignItems: 'center',
-    marginBottom: 10,
+    backgroundColor: COLORS.accent,
+    paddingVertical: 10,
+    paddingHorizontal: 24,
+    borderRadius: 8,
   },
   buttonText: {
-    color: '#FFFFFF',
-    fontSize: 16,
-    fontWeight: '600',
+    color: COLORS.textSecondary,
+    fontFamily: FONTS.bold,
+    fontSize: 20,
+    // fontWeight: '600',
   },
-  secondaryButton: {
-    width: '100%',
-    paddingVertical: 12,
-    alignItems: 'center',
-  },
-  secondaryButtonText: {
-    color: '#6B7280',
-    fontSize: 16,
-    fontWeight: '600',
-  },
+  // secondaryButton: {
+  //   width: '100%',
+  //   paddingVertical: 12,
+  //   alignItems: 'center',
+  // },
+  // secondaryButtonText: {
+  //   color: '#6B7280',
+  //   fontSize: 16,
+  //   fontWeight: '600',
+  // },
 });
 
 

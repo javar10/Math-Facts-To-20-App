@@ -1,7 +1,7 @@
 import React from 'react';
 import { TouchableOpacity, View, Text, StyleSheet } from 'react-native';
 import { LinearGradient } from 'expo-linear-gradient'; // Use 'react-native-linear-gradient' if not using Expo
-import COLORS from '../constants/colors'; // Adjust path to match your project
+import {COLORS, FONTS} from '../constants/theme'; // Adjust path to match your project
 
 const NumberButton = ({ label, onPress }) => {
   return (
@@ -59,8 +59,9 @@ const styles = StyleSheet.create({
   },
   buttonText: {
     color: COLORS.textPrimary,
+    fontFamily: FONTS.bold,
     fontSize: 36,
-    fontWeight: '800',
+    // fontWeight: '800',
     fontVariant: ['tabular-nums'],
   },
 });

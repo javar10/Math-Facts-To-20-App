@@ -1,6 +1,6 @@
 import { StyleSheet, Text, View } from 'react-native'
 import { useState, useEffect } from 'react'
-import COLORS from '../constants/colors'
+import {COLORS, FONTS} from '../constants/theme'
 
 const MathProblem = ({ setAnswer, questionCount }) => {
     const maxSum = 10;
@@ -53,8 +53,8 @@ export default MathProblem
 
 const styles = StyleSheet.create({
     text: {
+        fontFamily: FONTS.bold,
         fontSize: 64,
-        fontWeight: '800',
         color: COLORS.textPrimary,
         textAlign: 'center',
         letterSpacing: -0.5,

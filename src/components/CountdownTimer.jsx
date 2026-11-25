@@ -1,9 +1,9 @@
 import React, { useState, useEffect, useRef } from 'react';
 import { View, Text, TouchableOpacity, Animated, Easing, StyleSheet, } from 'react-native';
-import COLORS from '../constants/colors';
+import {COLORS, FONTS} from '../constants/theme';
 
 
-const DURATION_SECONDS = 3;
+const DURATION_SECONDS = 300;
 
 const CountdownTimer = ({
   isTimeUp,
@@ -144,13 +144,14 @@ const styles = StyleSheet.create({
     padding: 16,
     marginTop: 8,
   },
-  timerText: {
-    fontSize: 40,
-    fontWeight: '700',
-    color: COLORS.textPrimary,
-    marginBottom: 12,
-    fontVariant: ['tabular-nums'],
-  },
+  // timerText: {
+  //   fontFamily: FONTS.regular,
+  //   fontSize: 40,
+  //   fontWeight: '700',
+  //   color: COLORS.textPrimary,
+  //   marginBottom: 12,
+  //   fontVariant: ['tabular-nums'],
+  // },
   track: {
     width: '100%',
     height: 24,
@@ -158,6 +159,8 @@ const styles = StyleSheet.create({
     borderRadius: 8,
     overflow: 'hidden',
     marginBottom: 20,
+    borderWidth: .5,
+    borderColor: COLORS.primary,
   },
   bar: {
     height: '100%',
@@ -178,7 +181,8 @@ const styles = StyleSheet.create({
   },
   buttonText: {
     color: COLORS.textSecondary,
-    fontSize: 16,
-    fontWeight: '600',
+    fontFamily: FONTS.bold,
+    fontSize: 20,
+    // fontWeight: '600',
   },
 });
