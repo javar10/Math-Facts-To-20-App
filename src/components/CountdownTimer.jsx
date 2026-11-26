@@ -5,17 +5,9 @@ import {COLORS, FONTS} from '../constants/theme';
 
 const DURATION_SECONDS = 60;
 
-const CountdownTimer = ({
-  isTimeUp,
-  setIsTimeUp,
-  isRunning,
-  setIsRunning,
-  correctAnswers,
-  setCorrectAnswers,
-  targetNumber,
-}) => {
+const CountdownTimer = ({isTimeUp, setIsTimeUp, isRunning, setIsRunning, correctAnswers, setCorrectAnswers, targetNumber, hasStarted, setHasStarted}) => {
   const [secondsLeft, setSecondsLeft] = useState(DURATION_SECONDS);
-  const [hasStarted, setHasStarted] = useState(false);
+  // const [hasStarted, setHasStarted] = useState(false);
 
   // updating the pause/resume instead of pause/start. 
 

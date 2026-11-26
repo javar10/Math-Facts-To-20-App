@@ -10,6 +10,7 @@ import EndRoundModal from '../components/EndRoundModal'
 import OptionsScreen from './OptionsScreen'
 import { COLORS } from '../constants/theme'
 import { getDifficultyTargets } from '../constants/savedOptions'
+import RyansPage from '../components/RyansPage'
 
 
 const GameScreen = () => {
@@ -22,6 +23,7 @@ const GameScreen = () => {
   const [questionCount, setQuestionCount] = useState(0);
   const [correctAnswers, setCorrectAnswers] = useState(0);
   const [roundResult, setRoundResult] = useState(null);
+  const [hasStarted, setHasStarted] = useState(false);
 
   const generateNewProblem = (selectedAnswer) => {
     setQuestionCount((prev) => prev + 1);
@@ -88,15 +90,7 @@ const GameScreen = () => {
                 ))}
               </View>
             </View>
-            <CountdownTimer
-              isTimeUp={isTimeUp}
-              setIsTimeUp={setIsTimeUp}
-              isRunning={isRunning}
-              setIsRunning={setIsRunning}
-              correctAnswers={correctAnswers}
-              setCorrectAnswers={setCorrectAnswers}
-              targetNumber={targetNumber}
-            />
+           
           </View>
           :
           <View style={styles.startScreenContainer}>
@@ -105,25 +99,19 @@ const GameScreen = () => {
               style={styles.turkeyImage}
               resizeMode="contain"
             />
+            {!hasStarted ? 
             <OptionsScreen
               operation={operation}
               setOperation={setOperation}
               difficulty={difficulty}
               setDifficulty={setDifficulty}
             />
-            <CountdownTimer
-              isTimeUp={isTimeUp}
-              setIsTimeUp={setIsTimeUp}
-              isRunning={isRunning}
-              setIsRunning={setIsRunning}
-              correctAnswers={correctAnswers}
-              setCorrectAnswers={setCorrectAnswers}
-              targetNumber={targetNumber}
-            />
+            : null }
+           
           </View>
         }
 
-        {/* <CountdownTimer
+        <CountdownTimer
           isTimeUp={isTimeUp}
           setIsTimeUp={setIsTimeUp}
           isRunning={isRunning}
@@ -131,7 +119,9 @@ const GameScreen = () => {
           correctAnswers={correctAnswers}
           setCorrectAnswers={setCorrectAnswers}
           targetNumber={targetNumber}
-        /> */}
+          hasStarted={hasStarted}
+          setHasStarted={setHasStarted}
+        />
 
       </View>
     </SafeAreaView>
