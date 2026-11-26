@@ -1,21 +1,42 @@
-import { StyleSheet, Text, View, TouchableOpacity } from 'react-native'
-import React from 'react'
-import { COLORS, FONTS } from '../constants/theme'
+import React from 'react';
+import { TouchableOpacity, View, Text, StyleSheet } from 'react-native';
+import FontAwesome5 from '@expo/vector-icons/FontAwesome5';
+import { COLORS, FONTS } from '../constants/theme';
+
+const FEATHER_COUNTS = {
+    beginner: 1,
+    easy: 2,
+    medium: 3,
+    hard: 4,
+    expert: 5,
+};
 
 const DifficultyButton = ({ label, difficulty, setDifficulty }) => {
-    const selectedButton = label === difficulty ? true : false
+    const isSelected = label === difficulty;
+    const featherCount = FEATHER_COUNTS[label] || 1;
+    const iconColor = isSelected ? COLORS.textSecondary : COLORS.textPrimary; // Flips color when selected
 
     return (
         <TouchableOpacity
             onPress={() => setDifficulty(label)}
-            style={[styles.button, selectedButton ? styles.selectedButton : styles.button]}
+            style={[styles.button, isSelected && styles.selectedButton]}
         >
-            <Text style={[styles.buttonText, selectedButton ? styles.selectedButtonText : styles.buttonText]}>{label}</Text>
+            <View style={styles.featherRow}>
+                {Array.from({ length: featherCount }).map((_, index) => (
+                    <FontAwesome5
+                        key={index}
+                        name="feather-alt"
+                        size={14}
+                        color={iconColor}
+                    />
+                ))}
+            </View>
         </TouchableOpacity>
-    )
-}
+    );
+};
 
-export default DifficultyButton
+export default DifficultyButton;
+
 
 const styles = StyleSheet.create({
     button: {
@@ -51,12 +72,19 @@ const styles = StyleSheet.create({
         shadowOpacity: 0,
         elevation: 0,
     },
-    buttonText: {
-        color: COLORS.textPrimary,
-        fontFamily: FONTS.bold,
-        fontSize: 20,
+    featherRow: {
+        flexDirection: 'row',
+        alignItems: 'center',
+        justifyContent: 'center',
+        gap: 3,
+        // marginBottom: 4, // Small space between the feathers and the text label below
     },
-    selectedButtonText: {
-        color: COLORS.textSecondary
-    }
+    // buttonText: {
+    //     color: COLORS.textPrimary,
+    //     fontFamily: FONTS.bold,
+    //     fontSize: 20,
+    // },
+    // selectedButtonText: {
+    //     color: COLORS.textSecondary
+    // }
 })

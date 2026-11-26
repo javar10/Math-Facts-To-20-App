@@ -7,9 +7,6 @@ import { COLORS, FONTS } from '../constants/theme'
 // import { getDifficultyTargets } from '../constants/savedOptions'
 
 const OptionsScreen = ({ operation, setOperation, difficulty, setDifficulty }) => {
-  // useEffect(() => {
-  //   getDifficultyTargets(operation);
-  // }, [operation]);
 
   return (
     <View style={styles.optionsContainer}>
@@ -61,7 +58,7 @@ const styles = StyleSheet.create({
     maxWidth: '85%',
     backgroundColor: COLORS.background,
     borderRadius: 16,
-    padding: 16,
+    padding: 24,
     marginHorizontal: 16,
     marginVertical: 8,
     // iOS drop shadow
@@ -89,5 +86,6 @@ const styles = StyleSheet.create({
     alignItems: 'center',
     flexWrap: 'wrap',         // Wraps to a second line if buttons overflow narrow screens
     gap: 10,                  // Adds even spacing between buttons
+    marginBottom: 8,
   },
 })

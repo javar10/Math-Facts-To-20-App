@@ -23,8 +23,8 @@ export default OperationButton
 const styles = StyleSheet.create({
     button: {
         backgroundColor: COLORS.primary,
-        paddingVertical: 10,
-        paddingHorizontal: 24,
+        paddingVertical: 8,
+        paddingHorizontal: 16,
         borderRadius: 8,
 
         // Bevel
