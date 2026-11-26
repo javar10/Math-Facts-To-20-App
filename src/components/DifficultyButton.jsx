@@ -24,16 +24,7 @@ const styles = StyleSheet.create({
         paddingHorizontal: 24,
         borderRadius: 8,
 
-        // Shadow
-        // shadowColor: '#3E2723',
-        // shadowOffset: { width: 0, height: 2 },
-        // shadowOpacity: 0.18,
-        // shadowRadius: 3,
-
-        // // Subtle drop shadow (Android)
-        // elevation: 3,
-
-         // Raised (convex) bevel for #FFD4A1: bright top/left highlight, warm caramel bottom/right edge
+        // Bevel
         borderTopWidth: 2,
         borderLeftWidth: 1.5,
         borderBottomWidth: 2,
