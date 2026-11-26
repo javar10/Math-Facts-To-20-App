@@ -3,7 +3,10 @@ import { StyleSheet, Text, View } from 'react-native'
 const OptionsScreen = () => {
   return (
     <View>
-      <Text>OptionsScreen</Text>
+      <Text>Operation</Text>
+      <OperationButton/>
+      <Text>Difficulty</Text>
+      <DifficultButton/>
       {/* game settings menu
       -difficulty level
       -5, 10, or 20

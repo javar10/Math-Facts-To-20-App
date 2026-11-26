@@ -3,7 +3,7 @@ import { View, Text, TouchableOpacity, Animated, Easing, StyleSheet, } from 'rea
 import {COLORS, FONTS} from '../constants/theme';
 
 
-const DURATION_SECONDS = 300;
+const DURATION_SECONDS = 60;
 
 const CountdownTimer = ({
   isTimeUp,

@@ -7,11 +7,13 @@ import answerChoices from '../constants/answerChoices'
 import TurkeyAnimation from '../components/TurkeyAnimation'
 import CountdownTimer from '../components/CountdownTimer'
 import EndRoundModal from '../components/EndRoundModal'
-import {COLORS} from '../constants/theme'
+import { COLORS } from '../constants/theme'
+import { getDifficultyTargets } from '../constants/savedOptions'
 
 
 const GameScreen = () => {
-  const difficulty = 1;
+  const [operation, setOperation] = useState('addition');
+  const [difficulty, setDifficulty] = useState(getDifficultyTargets('addition').medium);
   const [isRunning, setIsRunning] = useState(false);
   const [isTimeUp, setIsTimeUp] = useState(false);
   const [answer, setAnswer] = useState(null);
@@ -58,36 +60,35 @@ const GameScreen = () => {
         // onExit={() => navigation?.goBack()}
         />
         {isRunning ?
-          <TurkeyAnimation
-            correctAnswers={correctAnswers}
-            difficulty={difficulty}
-          />
+          <View>
+            <TurkeyAnimation
+              correctAnswers={correctAnswers}
+              difficulty={difficulty}
+            />
+            <View>
+              <MathProblem
+                setAnswer={setAnswer}
+                questionCount={questionCount}
+                operation={operation}
+              />
+              <View style={styles.choicesContainer}>
+                {answerChoices.map((choice) => (
+                  <AnswerButton
+                    key={choice}
+                    label={choice}
+                    answer={answer}
+                    onPress={() => { generateNewProblem(choice) }}
+                  />
+                ))}
+              </View>
+            </View>
+          </View>
           :
           <Image
             source={require('../assets/turkey_start.png')}
             style={styles.turkeyImage}
             resizeMode="contain"
-          />
-        }
-
-        {isRunning ?
-          <View>
-            <MathProblem
-              setAnswer={setAnswer}
-              questionCount={questionCount}
-            />
-            <View style={styles.choicesContainer}>
-              {answerChoices.map((choice) => (
-                <AnswerButton
-                  key={choice}
-                  label={choice}
-                  answer={answer}
-                  onPress={() => { generateNewProblem(choice) }}
-                />
-              ))}
-            </View>
-          </View>
-          : null}
+          />}
 
         <CountdownTimer
           isTimeUp={isTimeUp}
@@ -118,7 +119,7 @@ const styles = StyleSheet.create({
     paddingHorizontal: 20,
     paddingVertical: 12,
   },
-   turkeyImage: {
+  turkeyImage: {
     flex: 1,
     width: '95%',
     height: undefined, // Overrides the image's small native pixel height so it scales up

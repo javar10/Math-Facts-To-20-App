@@ -42,8 +42,8 @@ const EndRoundModal = ({ visible, roundResult, correctAnswers, difficulty, onPla
             </View>
           }
 
-          {/* <Text style={styles.scoreLabel}>Final Score</Text>
-          <Text style={styles.scoreValue}>{correctAnswers}</Text> */}
+          <Text style={styles.scoreLabel}>Final Score</Text>
+          <Text style={styles.scoreValue}>{correctAnswers}</Text>
 
           <TouchableOpacity style={styles.primaryButton} onPress={onPlayAgain}>
             <Text style={styles.buttonText}>Play Again</Text>
@@ -86,16 +86,16 @@ const styles = StyleSheet.create({
     textAlign: 'center',
     lineHeight: 36,
   },
-  // scoreLabel: {
-  //   fontSize: 16,
-  //   color: '#6B7280',
-  // },
-  // scoreValue: {
-  //   fontSize: 48,
-  //   fontWeight: '700',
-  //   color: '#3B82F6',
-  //   marginVertical: 16,
-  // },
+  scoreLabel: {
+    fontSize: 16,
+    color: '#6B7280',
+  },
+  scoreValue: {
+    fontSize: 48,
+    fontWeight: '700',
+    color: '#3B82F6',
+    marginVertical: 16,
+  },
   image: {
     width: 180,
     height: 180,

@@ -2,9 +2,9 @@ import { StyleSheet, Text, View } from 'react-native'
 import { useState, useEffect } from 'react'
 import {COLORS, FONTS} from '../constants/theme'
 
-const MathProblem = ({ setAnswer, questionCount }) => {
+const MathProblem = ({ setAnswer, questionCount, operation }) => {
     const maxSum = 10;
-    const operation = 'addition';
+    // const operation = 'subtraction';
     const [problemText, setProblemText] = useState('');
 
     useEffect(() => {
