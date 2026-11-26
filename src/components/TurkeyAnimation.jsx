@@ -6,8 +6,8 @@ import {
   StyleSheet,
   useWindowDimensions,
 } from 'react-native';
+import { COLORS } from '../constants/theme';
 
-const FRAME_INNER_TRIM = '#D97706'; // Warm orange/amber border
 const BACKGROUND_IMAGE = require('../assets/background.png');
 
 const TurkeyAnimation = ({ correctAnswers, targetNumber }) => {
@@ -24,7 +24,7 @@ const TurkeyAnimation = ({ correctAnswers, targetNumber }) => {
   const frameHeight = aspectRatio >= 1 ? CONTAINER_SIZE / aspectRatio : CONTAINER_SIZE;
 
   const START_BOTTOM = frameHeight * 0.2;      // 20% up from the bottom
-  const END_BOTTOM = frameHeight * 0.77;       // Stops at 77% up from the bottom
+  const END_BOTTOM = frameHeight * 0.76;       // Stops at 76% up from the bottom
   const START_TURKEY_SIZE = frameWidth * 0.8;  // Keeps the head inside the frame at start
 
   const safeDifficulty = targetNumber > 0 ? targetNumber : 10;
@@ -58,7 +58,7 @@ const TurkeyAnimation = ({ correctAnswers, targetNumber }) => {
       ]}
     >
       <Image
-        source={BACKGROUND_IMAGE}
+        source={require('../assets/background.png')}
         resizeMode="cover"
         style={[
           styles.background,
@@ -91,7 +91,7 @@ const styles = StyleSheet.create({
     overflow: 'hidden',
     borderRadius: 12,
     borderWidth: 2.5,
-    borderColor: FRAME_INNER_TRIM,
+    borderColor: COLORS.accent,
   },
   background: {
     position: 'absolute',
