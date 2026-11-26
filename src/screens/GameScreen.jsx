@@ -88,6 +88,15 @@ const GameScreen = () => {
                 ))}
               </View>
             </View>
+            <CountdownTimer
+              isTimeUp={isTimeUp}
+              setIsTimeUp={setIsTimeUp}
+              isRunning={isRunning}
+              setIsRunning={setIsRunning}
+              correctAnswers={correctAnswers}
+              setCorrectAnswers={setCorrectAnswers}
+              targetNumber={targetNumber}
+            />
           </View>
           :
           <View style={styles.startScreenContainer}>
@@ -102,10 +111,19 @@ const GameScreen = () => {
               difficulty={difficulty}
               setDifficulty={setDifficulty}
             />
+            <CountdownTimer
+              isTimeUp={isTimeUp}
+              setIsTimeUp={setIsTimeUp}
+              isRunning={isRunning}
+              setIsRunning={setIsRunning}
+              correctAnswers={correctAnswers}
+              setCorrectAnswers={setCorrectAnswers}
+              targetNumber={targetNumber}
+            />
           </View>
         }
 
-        <CountdownTimer
+        {/* <CountdownTimer
           isTimeUp={isTimeUp}
           setIsTimeUp={setIsTimeUp}
           isRunning={isRunning}
@@ -113,7 +131,7 @@ const GameScreen = () => {
           correctAnswers={correctAnswers}
           setCorrectAnswers={setCorrectAnswers}
           targetNumber={targetNumber}
-        />
+        /> */}
 
       </View>
     </SafeAreaView>
