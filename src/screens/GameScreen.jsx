@@ -96,27 +96,20 @@ const GameScreen = () => {
               </View>
 
               <CountdownTimer
-                isTimeUp={isTimeUp}
                 setIsTimeUp={setIsTimeUp}
                 isRunning={isRunning}
                 setIsRunning={setIsRunning}
                 correctAnswers={correctAnswers}
-                setCorrectAnswers={setCorrectAnswers}
                 targetNumber={targetNumber}
-                hasStarted={hasStarted}
-                setHasStarted={setHasStarted}
                 secondsLeft={secondsLeft}
                 setSecondsLeft={setSecondsLeft}
               />
 
               <PlayButtons
-                isTimeUp={isTimeUp}
                 setIsTimeUp={setIsTimeUp}
                 isRunning={isRunning}
                 setIsRunning={setIsRunning}
-                correctAnswers={correctAnswers}
                 setCorrectAnswers={setCorrectAnswers}
-                targetNumber={targetNumber}
                 hasStarted={hasStarted}
                 setHasStarted={setHasStarted}
                 secondsLeft={secondsLeft}
@@ -133,13 +126,10 @@ const GameScreen = () => {
               resizeMode="contain"
             />
             <PlayButtons
-              isTimeUp={isTimeUp}
               setIsTimeUp={setIsTimeUp}
               isRunning={isRunning}
               setIsRunning={setIsRunning}
-              correctAnswers={correctAnswers}
               setCorrectAnswers={setCorrectAnswers}
-              targetNumber={targetNumber}
               hasStarted={hasStarted}
               setHasStarted={setHasStarted}
               secondsLeft={secondsLeft}

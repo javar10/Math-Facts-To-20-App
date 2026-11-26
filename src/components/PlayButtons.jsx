@@ -1,9 +1,9 @@
-import { StyleSheet, Text, View, TouchableOpacity, Animated, Easing } from 'react-native'
-import React, { useRef } from 'react'
+import { StyleSheet, Text, View, TouchableOpacity, Animated} from 'react-native'
+import { useRef } from 'react'
 import { COLORS, FONTS } from '../constants/theme'
 import DURATION_SECONDS from '../constants/gameDuration'
 
-const PlayButtons = ({ isTimeUp, setIsTimeUp, isRunning, setIsRunning, correctAnswers, setCorrectAnswers, targetNumber, hasStarted, setHasStarted, secondsLeft, setSecondsLeft }) => {
+const PlayButtons = ({ setIsTimeUp, isRunning, setIsRunning, setCorrectAnswers, hasStarted, setHasStarted, secondsLeft, setSecondsLeft }) => {
     const progress = useRef(new Animated.Value(1)).current;
 
     const handleStartPause = () => {
@@ -73,6 +73,5 @@ const styles = StyleSheet.create({
         color: COLORS.textSecondary,
         fontFamily: FONTS.bold,
         fontSize: 20,
-        // fontWeight: '600',
     },
 });

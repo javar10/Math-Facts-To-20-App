@@ -1,33 +1,20 @@
-import React, { useState, useEffect, useRef } from 'react';
-import { View, Text, TouchableOpacity, Animated, Easing, StyleSheet, } from 'react-native';
-import {COLORS, FONTS} from '../constants/theme';
+import { useEffect, useRef } from 'react';
+import { View, Animated, Easing, StyleSheet, } from 'react-native';
+import { COLORS } from '../constants/theme';
 import DURATION_SECONDS from '../constants/gameDuration';
 
-// const DURATION_SECONDS = 60;
 
-const CountdownTimer = ({isTimeUp, setIsTimeUp, isRunning, setIsRunning, correctAnswers, setCorrectAnswers, targetNumber, hasStarted, setHasStarted, secondsLeft, setSecondsLeft}) => {
-  // const [secondsLeft, setSecondsLeft] = useState(DURATION_SECONDS);
-  // const [hasStarted, setHasStarted] = useState(false);
-
-  // updating the pause/resume instead of pause/start. 
+const CountdownTimer = ({ setIsTimeUp, isRunning, setIsRunning, correctAnswers, targetNumber, secondsLeft, setSecondsLeft }) => {
 
   const progress = useRef(new Animated.Value(1)).current;
 
-  // 1. Stop the timer immediately when the player wins the round
   useEffect(() => {
     if (correctAnswers === targetNumber && targetNumber > 0) {
       setIsRunning(false);
     }
   }, [correctAnswers, targetNumber]);
 
-  // 2. Reset the timer back to 60s (paused) whenever a new round starts ("Play Again")
-  // useEffect(() => {
-  //   if (!isTimeUp && correctAnswers === 0) {
-  //     handleReset();
-  //   }
-  // }, [isTimeUp, correctAnswers]);
 
-  // 3. Handle countdown interval and smooth bar animation
   useEffect(() => {
     let interval = null;
 
@@ -56,7 +43,6 @@ const CountdownTimer = ({isTimeUp, setIsTimeUp, isRunning, setIsRunning, correct
     return () => clearInterval(interval);
   }, [isRunning]);
 
-  // 4. Safely notify GameScreen after secondsLeft hits 0
   useEffect(() => {
     if (secondsLeft === 0) {
       setIsRunning(false);
@@ -65,27 +51,6 @@ const CountdownTimer = ({isTimeUp, setIsTimeUp, isRunning, setIsRunning, correct
       }
     }
   }, [secondsLeft]);
-
-  // const handleStartPause = () => {
-  //   if (secondsLeft === 0) {
-  //     handleReset();
-  //     setIsRunning(true);
-  //   } else {
-  //     setIsRunning((prev) => !prev);
-  //     setHasStarted(true);
-  //   }
-  // };
-
-  // const handleReset = () => {
-  //   setIsRunning(false);
-  //   setSecondsLeft(DURATION_SECONDS);
-  //   setCorrectAnswers(0);
-  //   setHasStarted(false);
-  //   if (setIsTimeUp) {
-  //     setIsTimeUp(false);
-  //   }
-  //   progress.setValue(1);
-  // };
 
   const barWidth = progress.interpolate({
     inputRange: [0, 1],
@@ -96,7 +61,6 @@ const CountdownTimer = ({isTimeUp, setIsTimeUp, isRunning, setIsRunning, correct
 
   return (
     <View style={styles.container}>
-      {/* <Text style={styles.timerText}>{secondsLeft}s</Text> */}
 
       {isRunning && (
         <View style={styles.track}>
@@ -108,22 +72,6 @@ const CountdownTimer = ({isTimeUp, setIsTimeUp, isRunning, setIsRunning, correct
           />
         </View>)}
 
-      {/* <View style={styles.controls}>
-        <TouchableOpacity style={styles.button} onPress={handleStartPause}>
-          <Text style={styles.buttonText}>
-            {isRunning ? 'Pause' : hasStarted ? 'Resume' : 'Start'}
-          </Text>
-        </TouchableOpacity>
-
-        {isRunning || hasStarted ? (
-          <TouchableOpacity
-            style={[styles.button, styles.resetButton]}
-            onPress={handleReset}
-          >
-            <Text style={styles.buttonText}>Reset</Text>
-          </TouchableOpacity>
-        ): null}
-      </View> */}
     </View>
   );
 };
@@ -137,14 +85,6 @@ const styles = StyleSheet.create({
     padding: 16,
     marginTop: 8,
   },
-  // timerText: {
-  //   fontFamily: FONTS.regular,
-  //   fontSize: 40,
-  //   fontWeight: '700',
-  //   color: COLORS.textPrimary,
-  //   marginBottom: 12,
-  //   fontVariant: ['tabular-nums'],
-  // },
   track: {
     width: '100%',
     height: 24,
@@ -158,24 +98,5 @@ const styles = StyleSheet.create({
   bar: {
     height: '100%',
     borderRadius: 8,
-  },
-  controls: {
-    flexDirection: 'row',
-    gap: 12,
-  },
-  button: {
-    backgroundColor: COLORS.accent,
-    paddingVertical: 10,
-    paddingHorizontal: 24,
-    borderRadius: 8,
-  },
-  resetButton: {
-    backgroundColor: COLORS.secondary,
-  },
-  buttonText: {
-    color: COLORS.textSecondary,
-    fontFamily: FONTS.bold,
-    fontSize: 20,
-    // fontWeight: '600',
   },
 });
