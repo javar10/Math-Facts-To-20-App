@@ -12,7 +12,7 @@ const CountdownTimer = ({
   setIsRunning,
   correctAnswers,
   setCorrectAnswers,
-  difficulty,
+  targetNumber,
 }) => {
   const [secondsLeft, setSecondsLeft] = useState(DURATION_SECONDS);
   const [hasStarted, setHasStarted] = useState(false);
@@ -23,10 +23,10 @@ const CountdownTimer = ({
 
   // 1. Stop the timer immediately when the player wins the round
   useEffect(() => {
-    if (correctAnswers === difficulty && difficulty > 0) {
+    if (correctAnswers === targetNumber && targetNumber > 0) {
       setIsRunning(false);
     }
-  }, [correctAnswers, difficulty]);
+  }, [correctAnswers, targetNumber]);
 
   // 2. Reset the timer back to 60s (paused) whenever a new round starts ("Play Again")
   useEffect(() => {

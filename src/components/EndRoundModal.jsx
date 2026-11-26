@@ -2,7 +2,7 @@ import React, { useEffect } from 'react';
 import { View, Text, Modal, TouchableOpacity, StyleSheet, Image } from 'react-native';
 import {COLORS, FONTS} from '../constants/theme';
 
-const EndRoundModal = ({ visible, roundResult, correctAnswers, difficulty, onPlayAgain, onExit }) => {
+const EndRoundModal = ({ visible, roundResult, correctAnswers, onPlayAgain, onExit }) => {
 
 
   // useEffect(() => {

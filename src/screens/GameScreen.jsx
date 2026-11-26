@@ -7,13 +7,15 @@ import answerChoices from '../constants/answerChoices'
 import TurkeyAnimation from '../components/TurkeyAnimation'
 import CountdownTimer from '../components/CountdownTimer'
 import EndRoundModal from '../components/EndRoundModal'
+import OptionsScreen from './OptionsScreen'
 import { COLORS } from '../constants/theme'
 import { getDifficultyTargets } from '../constants/savedOptions'
 
 
 const GameScreen = () => {
   const [operation, setOperation] = useState('addition');
-  const [difficulty, setDifficulty] = useState(getDifficultyTargets('addition').medium);
+  const [difficulty, setDifficulty] = useState('medium');
+  const [targetNumber, setTargetNumber] = useState(15);
   const [isRunning, setIsRunning] = useState(false);
   const [isTimeUp, setIsTimeUp] = useState(false);
   const [answer, setAnswer] = useState(null);
@@ -28,12 +30,17 @@ const GameScreen = () => {
     }
   };
 
+  //When settings change:
+  useEffect(() => {
+    setTargetNumber(getDifficultyTargets(operation)[difficulty]);
+  }, [difficulty, operation]);
+
   // When player wins:
   useEffect(() => {
-    if (correctAnswers === difficulty && difficulty > 0) {
+    if (correctAnswers === targetNumber && targetNumber > 0) {
       setRoundResult('win');
     }
-  }, [correctAnswers, difficulty]);
+  }, [correctAnswers, targetNumber]);
 
   // When time runs out:
   useEffect(() => {
@@ -55,7 +62,6 @@ const GameScreen = () => {
           visible={roundResult !== null}
           roundResult={roundResult}
           correctAnswers={correctAnswers}
-          difficulty={difficulty}
           onPlayAgain={handlePlayAgain}
         // onExit={() => navigation?.goBack()}
         />
@@ -63,7 +69,7 @@ const GameScreen = () => {
           <View>
             <TurkeyAnimation
               correctAnswers={correctAnswers}
-              difficulty={difficulty}
+              targetNumber={targetNumber}
             />
             <View>
               <MathProblem
@@ -84,11 +90,18 @@ const GameScreen = () => {
             </View>
           </View>
           :
-          <Image
-            source={require('../assets/turkey_start.png')}
-            style={styles.turkeyImage}
-            resizeMode="contain"
-          />}
+          <View>
+            <Image
+              source={require('../assets/turkey_start.png')}
+              style={styles.turkeyImage}
+              resizeMode="contain"
+            />
+            <OptionsScreen
+              setOperation={setOperation}
+              setDifficulty={setDifficulty}
+            />
+          </View>
+        }
 
         <CountdownTimer
           isTimeUp={isTimeUp}
@@ -97,7 +110,7 @@ const GameScreen = () => {
           setIsRunning={setIsRunning}
           correctAnswers={correctAnswers}
           setCorrectAnswers={setCorrectAnswers}
-          difficulty={difficulty}
+          targetNumber={targetNumber}
         />
 
       </View>

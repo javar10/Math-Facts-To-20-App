@@ -1,3 +1,5 @@
+export const difficultyOptions = ['beginner', 'easy', 'medium', 'hard', 'expert']
+
 const DEFAULT_DIFFICULTIES = {
     beginner: 2,
     easy: 7,
@@ -25,4 +27,4 @@ export const getDifficultyTargets = (operation) => {
 export const maxSum = [5, 10, 20]
 
 // Mode or Operation:
-export const operation = ['addition', 'subtraction', 'both']
+export const operationOptions = ['addition', 'subtraction', 'both']

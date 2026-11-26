@@ -9,7 +9,7 @@ import {
 
 const FRAME_INNER_TRIM = '#D97706'; // Warm orange/amber border
 
-const TurkeyAnimation = ({ correctAnswers, difficulty }) => {
+const TurkeyAnimation = ({ correctAnswers, targetNumber }) => {
   const { width, height } = useWindowDimensions();
 
   // Scale dynamically: 80% of screen width, capped so MathProblem & Timer still fit comfortably
@@ -19,7 +19,7 @@ const TurkeyAnimation = ({ correctAnswers, difficulty }) => {
   const END_BOTTOM = CONTAINER_SIZE * 0.77;       // Stops at 77% up from the bottom
   const START_TURKEY_SIZE = CONTAINER_SIZE * 0.8; // Keeps the head inside the frame at start
 
-  const safeDifficulty = difficulty > 0 ? difficulty : 10;
+  const safeDifficulty = targetNumber > 0 ? targetNumber : 10;
   const targetProgress = Math.min(Math.max(correctAnswers / safeDifficulty, 0), 1);
 
   const animatedProgress = useRef(new Animated.Value(targetProgress)).current;
