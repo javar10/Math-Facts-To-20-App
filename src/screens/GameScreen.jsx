@@ -66,7 +66,7 @@ const GameScreen = () => {
         // onExit={() => navigation?.goBack()}
         />
         {isRunning ?
-          <View>
+          <View style={styles.gamePlayContainer}>
             <TurkeyAnimation
               correctAnswers={correctAnswers}
               targetNumber={targetNumber}
@@ -90,7 +90,7 @@ const GameScreen = () => {
             </View>
           </View>
           :
-          <View>
+          <View style={styles.startScreenContainer}>
             <Image
               source={require('../assets/turkey_start.png')}
               style={styles.turkeyImage}
@@ -134,9 +134,23 @@ const styles = StyleSheet.create({
     paddingHorizontal: 20,
     paddingVertical: 12,
   },
+  startScreenContainer: {
+    flex: 1,                  // Forces this whole block to stay within remaining screen height
+    minHeight: 0,             // Allows shrinking on smaller screens
+    width: '100%',
+    justifyContent: 'center',
+    alignItems: 'center',
+  },
+  gamePlayContainer: {
+    flex: 1,                  // Forces this whole block to stay within remaining screen height
+    minHeight: 0,             // Allows shrinking on smaller screens
+    width: '100%',
+    justifyContent: 'center',
+    alignItems: 'center',
+  },
   turkeyImage: {
     flex: 1,
-    width: '95%',
+    width: '100%',
     height: undefined, // Overrides the image's small native pixel height so it scales up
     aspectRatio: 1,    // Adjust if your image isn't square (e.g., 3 / 4 or 4 / 3)
     maxHeight: '65%',  // Prevents it from squeezing CountdownTimer at the bottom
