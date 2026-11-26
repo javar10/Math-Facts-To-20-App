@@ -2,12 +2,13 @@ import { StyleSheet, Text, View, TouchableOpacity } from 'react-native'
 import React from 'react'
 import { COLORS, FONTS } from '../constants/theme'
 
-const DifficultyButton = ({ label, setDifficulty }) => {
+const DifficultyButton = ({ label, difficulty, setDifficulty }) => {
+const selectedButton = label === difficulty ? true : false
 
     return (
         <TouchableOpacity
             onPress={() => setDifficulty(label)}
-            style={styles.button}
+            style={[styles.button, selectedButton ? styles.selectedButton : styles.button]}
         >
             <Text style={styles.buttonText}>{label}</Text>
         </TouchableOpacity>

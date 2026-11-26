@@ -97,7 +97,9 @@ const GameScreen = () => {
               resizeMode="contain"
             />
             <OptionsScreen
+              operation={operation}
               setOperation={setOperation}
+              difficulty={difficulty}
               setDifficulty={setDifficulty}
             />
           </View>

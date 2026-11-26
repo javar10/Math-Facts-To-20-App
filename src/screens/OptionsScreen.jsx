@@ -6,7 +6,7 @@ import { useEffect } from 'react'
 import { COLORS, FONTS } from '../constants/theme'
 // import { getDifficultyTargets } from '../constants/savedOptions'
 
-const OptionsScreen = ({ setOperation, setDifficulty }) => {
+const OptionsScreen = ({ operation, setOperation, difficulty, setDifficulty }) => {
   // useEffect(() => {
   //   getDifficultyTargets(operation);
   // }, [operation]);
@@ -15,10 +15,11 @@ const OptionsScreen = ({ setOperation, setDifficulty }) => {
     <View style={styles.optionsContainer}>
       <Text style={styles.title}>Mode</Text>
       <View style={styles.buttonContainer}>
-        {operationOptions.map((operation) => (
+        {operationOptions.map((operationOption) => (
           <OperationButton
-            key={operation}
-            label={operation}
+            key={operationOption}
+            label={operationOption}
+            operation={operation}
             setOperation={setOperation}
           />
         ))}
@@ -26,10 +27,11 @@ const OptionsScreen = ({ setOperation, setDifficulty }) => {
 
       <Text style={styles.title}>Level</Text>
       <View style={styles.buttonContainer}>
-        {difficultyOptions.map((difficulty) => (
+        {difficultyOptions.map((difficultyOption) => (
           <DifficultyButton
-            key={difficulty}
-            label={difficulty}
+            key={difficultyOption}
+            label={difficultyOption}
+            difficulty={difficulty}
             setDifficulty={setDifficulty}
           />
         ))}
