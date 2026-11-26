@@ -8,6 +8,7 @@ import {
 } from 'react-native';
 
 const FRAME_INNER_TRIM = '#D97706'; // Warm orange/amber border
+const BACKGROUND_IMAGE = require('../assets/background.png');
 
 const TurkeyAnimation = ({ correctAnswers, targetNumber }) => {
   const { width, height } = useWindowDimensions();
@@ -15,9 +16,16 @@ const TurkeyAnimation = ({ correctAnswers, targetNumber }) => {
   // Scale dynamically: 80% of screen width, capped so MathProblem & Timer still fit comfortably
   const CONTAINER_SIZE = Math.min(width * 0.8, height * 0.42, 360);
 
-  const START_BOTTOM = CONTAINER_SIZE * 0.2;      // 20% up from the bottom
-  const END_BOTTOM = CONTAINER_SIZE * 0.77;       // Stops at 77% up from the bottom
-  const START_TURKEY_SIZE = CONTAINER_SIZE * 0.8; // Keeps the head inside the frame at start
+  // Match the frame dimensions to the image's natural aspect ratio
+  const { width: imgW, height: imgH } = Image.resolveAssetSource(BACKGROUND_IMAGE);
+  const aspectRatio = imgW / imgH;
+
+  const frameWidth = aspectRatio >= 1 ? CONTAINER_SIZE : CONTAINER_SIZE * aspectRatio;
+  const frameHeight = aspectRatio >= 1 ? CONTAINER_SIZE / aspectRatio : CONTAINER_SIZE;
+
+  const START_BOTTOM = frameHeight * 0.2;      // 20% up from the bottom
+  const END_BOTTOM = frameHeight * 0.77;       // Stops at 77% up from the bottom
+  const START_TURKEY_SIZE = frameWidth * 0.8;  // Keeps the head inside the frame at start
 
   const safeDifficulty = targetNumber > 0 ? targetNumber : 10;
   const targetProgress = Math.min(Math.max(correctAnswers / safeDifficulty, 0), 1);
@@ -32,46 +40,43 @@ const TurkeyAnimation = ({ correctAnswers, targetNumber }) => {
     }).start();
   }, [targetProgress]);
 
-  // Shrink smoothly from START_TURKEY_SIZE down to 0px
   const animatedSize = animatedProgress.interpolate({
-    inputRange: [0, 1],
+    inputRange: [0,1],
     outputRange: [START_TURKEY_SIZE, 0],
   });
 
-  // Move from 20% up to 80% up
   const animatedBottom = animatedProgress.interpolate({
-    inputRange: [0, 1],
+    inputRange:[0,1],
     outputRange: [START_BOTTOM, END_BOTTOM],
   });
 
   return (
-    <View style={styles.shadowWrapper}>
-      <View
+    <View
+      style={[
+        styles.container,
+        { width: frameWidth, height: frameHeight },
+      ]}
+    >
+      <Image
+        source={BACKGROUND_IMAGE}
+        resizeMode="cover"
         style={[
-          styles.container,
-          { width: CONTAINER_SIZE, height: CONTAINER_SIZE },
+          styles.background,
+          { width: frameWidth, height: frameHeight },
         ]}
-      >
-        <Image
-          style={[
-            styles.background,
-            { width: CONTAINER_SIZE, height: CONTAINER_SIZE },
-          ]}
-          source={require('../assets/background.png')}
-        />
-        <Animated.Image
-          source={require('../assets/turkey_back.png')}
-          resizeMode="contain"
-          style={[
-            styles.turkey,
-            {
-              width: animatedSize,
-              height: animatedSize,
-              bottom: animatedBottom,
-            },
-          ]}
-        />
-      </View>
+      />
+      <Animated.Image
+        source={require('../assets/turkey_back.png')}
+        resizeMode="contain"
+        style={[
+          styles.turkey,
+          {
+            width: animatedSize,
+            height: animatedSize,
+            bottom: animatedBottom,
+          },
+        ]}
+      />
     </View>
   );
 };
@@ -79,20 +84,10 @@ const TurkeyAnimation = ({ correctAnswers, targetNumber }) => {
 export default TurkeyAnimation;
 
 const styles = StyleSheet.create({
-  shadowWrapper: {
-    // marginTop: 36,
-    marginVertical: 8,
-    borderRadius: 12,
-    backgroundColor: '#FFFFFF',
-    // Standard clean drop shadow
-    shadowColor: '#000000',
-    shadowOffset: { width: 0, height: 4 },
-    shadowOpacity: 0.22,
-    shadowRadius: 6,
-    elevation: 6,
-  },
   container: {
+    alignSelf: 'center', // Centers the frame horizontally in its parent
     alignItems: 'center',
+    marginVertical: 8,
     overflow: 'hidden',
     borderRadius: 12,
     borderWidth: 2.5,
@@ -100,6 +95,8 @@ const styles = StyleSheet.create({
   },
   background: {
     position: 'absolute',
+    top: 0,
+    left: 0,
   },
   turkey: {
     position: 'absolute',

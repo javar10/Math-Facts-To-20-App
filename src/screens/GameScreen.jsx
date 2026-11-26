@@ -30,7 +30,7 @@ const GameScreen = () => {
     }
   };
 
-  //When settings change:
+  // When settings change:
   useEffect(() => {
     setTargetNumber(getDifficultyTargets(operation)[difficulty]);
   }, [difficulty, operation]);
