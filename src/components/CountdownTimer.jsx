@@ -1,12 +1,12 @@
 import React, { useState, useEffect, useRef } from 'react';
 import { View, Text, TouchableOpacity, Animated, Easing, StyleSheet, } from 'react-native';
 import {COLORS, FONTS} from '../constants/theme';
+import DURATION_SECONDS from '../constants/gameDuration';
 
+// const DURATION_SECONDS = 60;
 
-const DURATION_SECONDS = 60;
-
-const CountdownTimer = ({isTimeUp, setIsTimeUp, isRunning, setIsRunning, correctAnswers, setCorrectAnswers, targetNumber, hasStarted, setHasStarted}) => {
-  const [secondsLeft, setSecondsLeft] = useState(DURATION_SECONDS);
+const CountdownTimer = ({isTimeUp, setIsTimeUp, isRunning, setIsRunning, correctAnswers, setCorrectAnswers, targetNumber, hasStarted, setHasStarted, secondsLeft, setSecondsLeft}) => {
+  // const [secondsLeft, setSecondsLeft] = useState(DURATION_SECONDS);
   // const [hasStarted, setHasStarted] = useState(false);
 
   // updating the pause/resume instead of pause/start. 

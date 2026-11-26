@@ -11,6 +11,8 @@ import OptionsScreen from './OptionsScreen'
 import { COLORS } from '../constants/theme'
 import { getDifficultyTargets } from '../constants/savedOptions'
 import RyansPage from '../components/RyansPage'
+import PlayButtons from '../components/PlayButtons'
+import DURATION_SECONDS from '../constants/gameDuration'
 
 
 const GameScreen = () => {
@@ -24,6 +26,7 @@ const GameScreen = () => {
   const [correctAnswers, setCorrectAnswers] = useState(0);
   const [roundResult, setRoundResult] = useState(null);
   const [hasStarted, setHasStarted] = useState(false);
+  const [secondsLeft, setSecondsLeft] = useState(DURATION_SECONDS);
 
   const generateNewProblem = (selectedAnswer) => {
     setQuestionCount((prev) => prev + 1);
@@ -90,7 +93,7 @@ const GameScreen = () => {
                 ))}
               </View>
             </View>
-           
+
           </View>
           :
           <View style={styles.startScreenContainer}>
@@ -99,15 +102,28 @@ const GameScreen = () => {
               style={styles.turkeyImage}
               resizeMode="contain"
             />
-            {!hasStarted ? 
-            <OptionsScreen
-              operation={operation}
-              setOperation={setOperation}
-              difficulty={difficulty}
-              setDifficulty={setDifficulty}
+            <PlayButtons
+              isTimeUp={isTimeUp}
+              setIsTimeUp={setIsTimeUp}
+              isRunning={isRunning}
+              setIsRunning={setIsRunning}
+              correctAnswers={correctAnswers}
+              setCorrectAnswers={setCorrectAnswers}
+              targetNumber={targetNumber}
+              hasStarted={hasStarted}
+              setHasStarted={setHasStarted}
+              secondsLeft={secondsLeft}
+              setSecondsLeft={setSecondsLeft}
             />
-            : null }
-           
+            {!hasStarted ?
+              <OptionsScreen
+                operation={operation}
+                setOperation={setOperation}
+                difficulty={difficulty}
+                setDifficulty={setDifficulty}
+              />
+              : null}
+
           </View>
         }
 
@@ -121,6 +137,8 @@ const GameScreen = () => {
           targetNumber={targetNumber}
           hasStarted={hasStarted}
           setHasStarted={setHasStarted}
+          secondsLeft={secondsLeft}
+              setSecondsLeft={setSecondsLeft}
         />
 
       </View>

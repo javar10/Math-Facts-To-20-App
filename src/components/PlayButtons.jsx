@@ -1,0 +1,78 @@
+import { StyleSheet, Text, View, TouchableOpacity, Animated, Easing } from 'react-native'
+import React, { useRef } from 'react'
+import { COLORS, FONTS } from '../constants/theme'
+import DURATION_SECONDS from '../constants/gameDuration'
+
+const PlayButtons = ({ isTimeUp, setIsTimeUp, isRunning, setIsRunning, correctAnswers, setCorrectAnswers, targetNumber, hasStarted, setHasStarted, secondsLeft, setSecondsLeft }) => {
+    const progress = useRef(new Animated.Value(1)).current;
+
+    const handleStartPause = () => {
+        if (secondsLeft === 0) {
+            handleReset();
+            setIsRunning(true);
+        } else {
+            setIsRunning((prev) => !prev);
+            setHasStarted(true);
+        }
+    };
+
+    const handleReset = () => {
+        setIsRunning(false);
+        setSecondsLeft(DURATION_SECONDS);
+        setCorrectAnswers(0);
+        setHasStarted(false);
+        if (setIsTimeUp) {
+            setIsTimeUp(false);
+        }
+        progress.setValue(1);
+    };
+
+    return (
+        <View style={styles.controls}>
+            <TouchableOpacity style={styles.button} onPress={handleStartPause}>
+                <Text style={styles.buttonText}>
+                    {isRunning ? 'Pause' : hasStarted ? 'Resume' : 'Start'}
+                </Text>
+            </TouchableOpacity>
+
+            {isRunning || hasStarted ? (
+                <TouchableOpacity
+                    style={[styles.button, styles.resetButton]}
+                    onPress={handleReset}
+                >
+                    <Text style={styles.buttonText}>Reset</Text>
+                </TouchableOpacity>
+            ) : null}
+        </View>
+    )
+}
+
+export default PlayButtons
+
+const styles = StyleSheet.create({
+    container: {
+        width: '80%',
+        alignItems: 'center',
+        padding: 16,
+        marginTop: 8,
+    },
+    controls: {
+        flexDirection: 'row',
+        gap: 12,
+    },
+    button: {
+        backgroundColor: COLORS.accent,
+        paddingVertical: 10,
+        paddingHorizontal: 24,
+        borderRadius: 8,
+    },
+    resetButton: {
+        backgroundColor: COLORS.secondary,
+    },
+    buttonText: {
+        color: COLORS.textSecondary,
+        fontFamily: FONTS.bold,
+        fontSize: 20,
+        // fontWeight: '600',
+    },
+});

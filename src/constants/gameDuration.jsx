@@ -1,0 +1,3 @@
+const DURATION_SECONDS = 60;
+
+export default DURATION_SECONDS;
