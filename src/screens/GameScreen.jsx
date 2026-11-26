@@ -10,7 +10,6 @@ import EndRoundModal from '../components/EndRoundModal'
 import OptionsScreen from './OptionsScreen'
 import { COLORS } from '../constants/theme'
 import { getDifficultyTargets } from '../constants/savedOptions'
-import RyansPage from '../components/RyansPage'
 import PlayButtons from '../components/PlayButtons'
 import DURATION_SECONDS from '../constants/gameDuration'
 
@@ -60,6 +59,7 @@ const GameScreen = () => {
     setRoundResult(null);
     setIsRunning(false);
     setHasStarted(false);
+    setSecondsLeft(DURATION_SECONDS);
   };
 
   return (
@@ -179,8 +179,8 @@ const styles = StyleSheet.create({
     marginBottom: 20, // Extra space separating the button from OptionsScreen below it
   },
   homeStartButton: {
-    paddingVertical: 12,
-    paddingHorizontal: 36,
+    paddingVertical: 4,
+    paddingHorizontal: 72,
     borderRadius: 12,
   },
   homeStartButtonText: {
