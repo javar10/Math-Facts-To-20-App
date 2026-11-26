@@ -1,9 +1,9 @@
-import { StyleSheet, Text, View, TouchableOpacity, Animated} from 'react-native'
+import { StyleSheet, Text, View, TouchableOpacity, Animated } from 'react-native'
 import { useRef } from 'react'
 import { COLORS, FONTS } from '../constants/theme'
 import DURATION_SECONDS from '../constants/gameDuration'
 
-const PlayButtons = ({ setIsTimeUp, isRunning, setIsRunning, setCorrectAnswers, hasStarted, setHasStarted, secondsLeft, setSecondsLeft }) => {
+const PlayButtons = ({ style, buttonStyle, textStyle, setIsTimeUp, isRunning, setIsRunning, setCorrectAnswers, hasStarted, setHasStarted, secondsLeft, setSecondsLeft }) => {
     const progress = useRef(new Animated.Value(1)).current;
 
     const handleStartPause = () => {
@@ -28,24 +28,27 @@ const PlayButtons = ({ setIsTimeUp, isRunning, setIsRunning, setCorrectAnswers, 
     };
 
     return (
-        <View style={styles.controls}>
-            <TouchableOpacity style={styles.button} onPress={handleStartPause}>
-                <Text style={styles.buttonText}>
+        <View style={[styles.controls, style]}>
+            <TouchableOpacity
+                style={[styles.button, buttonStyle]}
+                onPress={handleStartPause}
+            >
+                <Text style={[styles.buttonText, textStyle]}>
                     {isRunning ? 'Pause' : hasStarted ? 'Resume' : 'Start'}
                 </Text>
             </TouchableOpacity>
 
             {isRunning || hasStarted ? (
                 <TouchableOpacity
-                    style={[styles.button, styles.resetButton]}
+                    style={[styles.button, styles.resetButton, buttonStyle]}
                     onPress={handleReset}
                 >
-                    <Text style={styles.buttonText}>Reset</Text>
+                    <Text style={[styles.buttonText, textStyle]}>Reset</Text>
                 </TouchableOpacity>
             ) : null}
         </View>
-    )
-}
+    );
+};
 
 export default PlayButtons
 

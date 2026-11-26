@@ -126,6 +126,9 @@ const GameScreen = () => {
               resizeMode="contain"
             />
             <PlayButtons
+              style={!hasStarted && styles.homePlayControls}
+              buttonStyle={!hasStarted && styles.homeStartButton}
+              textStyle={!hasStarted && styles.homeStartButtonText}
               setIsTimeUp={setIsTimeUp}
               isRunning={isRunning}
               setIsRunning={setIsRunning}
@@ -171,6 +174,19 @@ const styles = StyleSheet.create({
     justifyContent: 'center',
     alignItems: 'center',
   },
+
+  homePlayControls: {
+    marginBottom: 20, // Extra space separating the button from OptionsScreen below it
+  },
+  homeStartButton: {
+    paddingVertical: 12,
+    paddingHorizontal: 36,
+    borderRadius: 12,
+  },
+  homeStartButtonText: {
+    fontSize: 48,
+  },
+
   gamePlayContainer: {
     flex: 1,                  // Forces this whole block to stay within remaining screen height
     minHeight: 0,             // Allows shrinking on smaller screens
