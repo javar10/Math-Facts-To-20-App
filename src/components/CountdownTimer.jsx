@@ -21,17 +21,18 @@ const CountdownTimer = ({isTimeUp, setIsTimeUp, isRunning, setIsRunning, correct
   }, [correctAnswers, targetNumber]);
 
   // 2. Reset the timer back to 60s (paused) whenever a new round starts ("Play Again")
-  useEffect(() => {
-    if (!isTimeUp && correctAnswers === 0) {
-      handleReset();
-    }
-  }, [isTimeUp, correctAnswers]);
+  // useEffect(() => {
+  //   if (!isTimeUp && correctAnswers === 0) {
+  //     handleReset();
+  //   }
+  // }, [isTimeUp, correctAnswers]);
 
   // 3. Handle countdown interval and smooth bar animation
   useEffect(() => {
     let interval = null;
 
     if (isRunning && secondsLeft > 0) {
+      progress.setValue(secondsLeft / DURATION_SECONDS);
       Animated.timing(progress, {
         toValue: 0,
         duration: secondsLeft * 1000,
@@ -65,26 +66,26 @@ const CountdownTimer = ({isTimeUp, setIsTimeUp, isRunning, setIsRunning, correct
     }
   }, [secondsLeft]);
 
-  const handleStartPause = () => {
-    if (secondsLeft === 0) {
-      handleReset();
-      setIsRunning(true);
-    } else {
-      setIsRunning((prev) => !prev);
-      setHasStarted(true);
-    }
-  };
+  // const handleStartPause = () => {
+  //   if (secondsLeft === 0) {
+  //     handleReset();
+  //     setIsRunning(true);
+  //   } else {
+  //     setIsRunning((prev) => !prev);
+  //     setHasStarted(true);
+  //   }
+  // };
 
-  const handleReset = () => {
-    setIsRunning(false);
-    setSecondsLeft(DURATION_SECONDS);
-    setCorrectAnswers(0);
-    setHasStarted(false);
-    if (setIsTimeUp) {
-      setIsTimeUp(false);
-    }
-    progress.setValue(1);
-  };
+  // const handleReset = () => {
+  //   setIsRunning(false);
+  //   setSecondsLeft(DURATION_SECONDS);
+  //   setCorrectAnswers(0);
+  //   setHasStarted(false);
+  //   if (setIsTimeUp) {
+  //     setIsTimeUp(false);
+  //   }
+  //   progress.setValue(1);
+  // };
 
   const barWidth = progress.interpolate({
     inputRange: [0, 1],
@@ -107,7 +108,7 @@ const CountdownTimer = ({isTimeUp, setIsTimeUp, isRunning, setIsRunning, correct
           />
         </View>)}
 
-      <View style={styles.controls}>
+      {/* <View style={styles.controls}>
         <TouchableOpacity style={styles.button} onPress={handleStartPause}>
           <Text style={styles.buttonText}>
             {isRunning ? 'Pause' : hasStarted ? 'Resume' : 'Start'}
@@ -122,7 +123,7 @@ const CountdownTimer = ({isTimeUp, setIsTimeUp, isRunning, setIsRunning, correct
             <Text style={styles.buttonText}>Reset</Text>
           </TouchableOpacity>
         ): null}
-      </View>
+      </View> */}
     </View>
   );
 };

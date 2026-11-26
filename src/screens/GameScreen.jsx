@@ -76,7 +76,7 @@ const GameScreen = () => {
               correctAnswers={correctAnswers}
               targetNumber={targetNumber}
             />
-            <View>
+            <View style={{ width: '100%', alignItems: 'center' }}>
               <MathProblem
                 setAnswer={setAnswer}
                 questionCount={questionCount}
@@ -92,6 +92,34 @@ const GameScreen = () => {
                   />
                 ))}
               </View>
+
+              <CountdownTimer
+                isTimeUp={isTimeUp}
+                setIsTimeUp={setIsTimeUp}
+                isRunning={isRunning}
+                setIsRunning={setIsRunning}
+                correctAnswers={correctAnswers}
+                setCorrectAnswers={setCorrectAnswers}
+                targetNumber={targetNumber}
+                hasStarted={hasStarted}
+                setHasStarted={setHasStarted}
+                secondsLeft={secondsLeft}
+                setSecondsLeft={setSecondsLeft}
+              />
+
+              <PlayButtons
+                isTimeUp={isTimeUp}
+                setIsTimeUp={setIsTimeUp}
+                isRunning={isRunning}
+                setIsRunning={setIsRunning}
+                correctAnswers={correctAnswers}
+                setCorrectAnswers={setCorrectAnswers}
+                targetNumber={targetNumber}
+                hasStarted={hasStarted}
+                setHasStarted={setHasStarted}
+                secondsLeft={secondsLeft}
+                setSecondsLeft={setSecondsLeft}
+              />
             </View>
 
           </View>
@@ -123,24 +151,8 @@ const GameScreen = () => {
                 setDifficulty={setDifficulty}
               />
               : null}
-
           </View>
         }
-
-        <CountdownTimer
-          isTimeUp={isTimeUp}
-          setIsTimeUp={setIsTimeUp}
-          isRunning={isRunning}
-          setIsRunning={setIsRunning}
-          correctAnswers={correctAnswers}
-          setCorrectAnswers={setCorrectAnswers}
-          targetNumber={targetNumber}
-          hasStarted={hasStarted}
-          setHasStarted={setHasStarted}
-          secondsLeft={secondsLeft}
-              setSecondsLeft={setSecondsLeft}
-        />
-
       </View>
     </SafeAreaView>
   )
