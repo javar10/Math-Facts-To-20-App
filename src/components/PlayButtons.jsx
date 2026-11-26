@@ -43,7 +43,7 @@ const PlayButtons = ({ style, buttonStyle, textStyle, setIsTimeUp, isRunning, se
                     style={[styles.button, styles.resetButton, buttonStyle]}
                     onPress={handleReset}
                 >
-                    <Text style={[styles.buttonText, textStyle]}>Reset</Text>
+                    <Text style={[styles.buttonText, styles.resetButtonText, textStyle]}>Reset</Text>
                 </TouchableOpacity>
             ) : null}
         </View>
@@ -57,24 +57,34 @@ const styles = StyleSheet.create({
         width: '80%',
         alignItems: 'center',
         padding: 16,
-        marginTop: 8,
+        // marginTop: 8,
     },
     controls: {
         flexDirection: 'row',
         gap: 12,
     },
     button: {
-        backgroundColor: COLORS.accent,
+        backgroundColor: COLORS.primary,
         paddingVertical: 10,
         paddingHorizontal: 24,
         borderRadius: 8,
+        shadowColor: '#3E2723',
+        shadowOffset: { width: 0, height: 2 },
+        shadowOpacity: 0.18,
+        shadowRadius: 3,
+
+        // Subtle drop shadow (Android)
+        elevation: 3,
     },
     resetButton: {
         backgroundColor: COLORS.secondary,
     },
     buttonText: {
-        color: COLORS.textSecondary,
+        color: COLORS.textPrimary,
         fontFamily: FONTS.bold,
         fontSize: 20,
     },
+    resetButtonText: {
+        color: COLORS.textSecondary
+    }
 });

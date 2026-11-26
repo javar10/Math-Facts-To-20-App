@@ -57,7 +57,7 @@ const CountdownTimer = ({ setIsTimeUp, isRunning, setIsRunning, correctAnswers, 
     outputRange: ['0%', '100%'],
   });
 
-  const barColor = secondsLeft <= 10 ? COLORS.secondary : COLORS.primary;
+  const barColor = secondsLeft <= 10 ? COLORS.secondary : COLORS.accent;
 
   return (
     <View style={styles.container}>
@@ -80,23 +80,33 @@ export default CountdownTimer;
 
 const styles = StyleSheet.create({
   container: {
-    width: '80%',
+    width: '95%',
     alignItems: 'center',
     padding: 16,
-    marginTop: 8,
+    marginTop: 16,
   },
   track: {
     width: '100%',
-    height: 24,
-    backgroundColor: '#E5E7EB',
-    borderRadius: 8,
+    height: 36,
+    backgroundColor: '#EFE4D4', // Soft warm sand/tan fill
+    borderRadius: 16,
     overflow: 'hidden',
     marginBottom: 20,
-    borderWidth: .5,
-    borderColor: COLORS.primary,
+
+    // Warm recessed groove: soft caramel top/left shadow, creamy bottom/right highlight
+    // borderTopWidth: 2,
+    // borderLeftWidth: 1.5,
+    // borderBottomWidth: 1.5,
+    // borderRightWidth: 1,
+    // borderTopColor: '#C8B296',    // Muted warm tan shadow
+    // borderLeftColor: '#D6C3AA',   // Subtle warm side shadow
+    // borderBottomColor: '#FFFDF9', // Soft warm cream highlight
+    // borderRightColor: '#FAF3E8',  // Gentle right highlight
   },
+
+
   bar: {
     height: '100%',
-    borderRadius: 8,
+    borderRadius: 6,
   },
 });

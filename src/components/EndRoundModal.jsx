@@ -105,13 +105,13 @@ const styles = StyleSheet.create({
 
   primaryButton: {
     alignItems: 'center',
-    backgroundColor: COLORS.accent,
+    backgroundColor: COLORS.primary,
     paddingVertical: 10,
     paddingHorizontal: 24,
     borderRadius: 8,
   },
   buttonText: {
-    color: COLORS.textSecondary,
+    color: COLORS.textPrimary,
     fontFamily: FONTS.bold,
     fontSize: 20,
     // fontWeight: '600',

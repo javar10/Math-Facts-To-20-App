@@ -179,21 +179,26 @@ const styles = StyleSheet.create({
     marginBottom: 20, // Extra space separating the button from OptionsScreen below it
   },
   homeStartButton: {
+    backgroundColor: COLORS.accent,
     paddingVertical: 4,
     paddingHorizontal: 72,
     borderRadius: 12,
+ 
   },
   homeStartButtonText: {
     fontSize: 48,
   },
 
   gamePlayContainer: {
-    flex: 1,                  // Forces this whole block to stay within remaining screen height
-    minHeight: 0,             // Allows shrinking on smaller screens
+    flex: 1,                  // Strictly locks height to the screen's remaining space
+    minHeight: 0,             // Critical: allows TurkeyAnimation to shrink so bottom never overflows
     width: '100%',
-    justifyContent: 'center',
+    justifyContent: 'space-evenly', // Adds balanced space at top, middle, and bottom without overflowing
     alignItems: 'center',
+    paddingVertical: 8,      // Small, guaranteed buffer from top and bottom edges
   },
+
+
   turkeyImage: {
     flex: 1,
     width: '100%',
