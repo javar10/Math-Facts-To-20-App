@@ -58,6 +58,8 @@ const GameScreen = () => {
     setCorrectAnswers(0);
     setIsTimeUp(false);
     setRoundResult(null);
+    setIsRunning(false);
+    setHasStarted(false);
   };
 
   return (
