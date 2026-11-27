@@ -22,7 +22,6 @@ export const getDifficultyTargets = (operation) => {
     return OPERATION_DIFFICULTIES[operation] || DEFAULT_DIFFICULTIES;
 };
 
-
 // Numbers up to:
 export const maxSum = [5, 10, 20]
 
