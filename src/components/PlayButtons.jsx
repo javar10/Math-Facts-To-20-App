@@ -10,6 +10,7 @@ const PlayButtons = ({ style, buttonStyle, textStyle, operation, setOperation, s
         if (!operation) {
             setOperation('addition');
         }
+        
         if (secondsLeft === 0) {
             handleReset();
             setIsRunning(true);

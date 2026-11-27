@@ -106,6 +106,8 @@ const GameScreen = () => {
               />
 
               <PlayButtons
+                operation={operation}
+                setOperation={setOperation}
                 setIsTimeUp={setIsTimeUp}
                 isRunning={isRunning}
                 setIsRunning={setIsRunning}
