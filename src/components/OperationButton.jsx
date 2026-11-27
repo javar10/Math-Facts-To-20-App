@@ -1,30 +1,43 @@
-import { StyleSheet, Text, TouchableOpacity, View } from 'react-native'
-import React from 'react'
-import { operations } from '../constants/savedOptions'
-import { COLORS, FONTS } from '../constants/theme'
+import React from 'react';
+import { StyleSheet, TouchableOpacity } from 'react-native';
+import FontAwesome5 from '@expo/vector-icons/FontAwesome5';
+import { COLORS } from '../constants/theme';
 
 const OperationButton = ({ label, operation, setOperation }) => {
+    const isSelected = operation === label || operation === 'both';
+    const iconName = label === 'addition' ? 'plus' : 'minus';
+    const iconColor = isSelected ? COLORS.primary : COLORS.secondary;
+    const otherOperation = label === 'addition' ? 'subtraction' : 'addition';
 
-    const selectedButton = label === operation ? true : false
-    const buttonText = label === 'addition' ? '+' : label === 'subtraction' ? '-' : '+ / -'
+    const handlePress = () => {
+        if (isSelected) {
+            // If both were active, keep the other one; if only this one was active, deselect all (null)
+            setOperation(operation === 'both' ? otherOperation : null);
+        } else {
+            // If the other one was active, make it 'both'; otherwise select just this one
+            setOperation(operation === otherOperation ? 'both' : label);
+        }
+    };
 
     return (
         <TouchableOpacity
-            onPress={() => setOperation(label)}
-            style={[styles.button, selectedButton ? styles.selectedButton : styles.button]}
+            onPress={handlePress}
+            style={[styles.button, isSelected && styles.selectedButton]}
         >
-            <Text style={[styles.buttonText, selectedButton ? styles.selectedButtonText : styles.buttonText]}>{buttonText}</Text>
+            <FontAwesome5 name={iconName} size={20} color={iconColor} />
         </TouchableOpacity>
-    )
-}
+    );
+};
 
-export default OperationButton
+export default OperationButton;
 
 const styles = StyleSheet.create({
     button: {
+        width: 48,
+        height: 48,
+        justifyContent: 'center',
+        alignItems: 'center',
         backgroundColor: COLORS.primary,
-        paddingVertical: 8,
-        paddingHorizontal: 16,
         borderRadius: 8,
 
         // Bevel
@@ -50,12 +63,4 @@ const styles = StyleSheet.create({
         borderBottomColor: 'rgba(255, 245, 235, 0.22)', // Soft warm bottom rim highlight
         borderRightColor: 'rgba(255, 245, 235, 0.12)',  // Subtle right highlight
     },
-    buttonText: {
-        color: COLORS.secondary,
-        fontFamily: FONTS.bold,
-        fontSize: 20,
-    },
-    selectedButtonText: {
-        color: COLORS.primary
-    }
-})
+});

@@ -130,6 +130,8 @@ const GameScreen = () => {
               style={!hasStarted && styles.homePlayControls}
               buttonStyle={!hasStarted && styles.homeStartButton}
               textStyle={!hasStarted && styles.homeStartButtonText}
+              operation={operation}
+              setOperation={setOperation}
               setIsTimeUp={setIsTimeUp}
               isRunning={isRunning}
               setIsRunning={setIsRunning}

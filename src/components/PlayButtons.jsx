@@ -3,10 +3,13 @@ import { useRef } from 'react'
 import { COLORS, FONTS } from '../constants/theme'
 import DURATION_SECONDS from '../constants/gameDuration'
 
-const PlayButtons = ({ style, buttonStyle, textStyle, setIsTimeUp, isRunning, setIsRunning, setCorrectAnswers, hasStarted, setHasStarted, secondsLeft, setSecondsLeft }) => {
+const PlayButtons = ({ style, buttonStyle, textStyle, operation, setOperation, setIsTimeUp, isRunning, setIsRunning, setCorrectAnswers, hasStarted, setHasStarted, secondsLeft, setSecondsLeft }) => {
     const progress = useRef(new Animated.Value(1)).current;
 
     const handleStartPause = () => {
+        if (!operation) {
+            setOperation('addition');
+        }
         if (secondsLeft === 0) {
             handleReset();
             setIsRunning(true);

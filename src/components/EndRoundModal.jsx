@@ -30,7 +30,7 @@ const EndRoundModal = ({ visible, roundResult, correctAnswers, onPlayAgain, onEx
             :
             <View>
               <Text style={styles.title}>
-                Oh no! {'\n'}
+                Too slow! {'\n'}
                 Looks like it's turkey for dinner.{'\n'}
                 {/* Try again! */}
               </Text>
