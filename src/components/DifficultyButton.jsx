@@ -14,7 +14,7 @@ const FEATHER_COUNTS = {
 const DifficultyButton = ({ label, difficulty, setDifficulty }) => {
     const isSelected = label === difficulty;
     const featherCount = FEATHER_COUNTS[label] || 1;
-    const iconColor = isSelected ? COLORS.textSecondary : COLORS.textPrimary; // Flips color when selected
+    const iconColor = isSelected ? COLORS.primary : COLORS.secondary; // Flips color when selected
 
     return (
         <TouchableOpacity

@@ -111,7 +111,7 @@ const styles = StyleSheet.create({
     borderRadius: 8,
   },
   buttonText: {
-    color: COLORS.textPrimary,
+    color: COLORS.secondary,
     fontFamily: FONTS.bold,
     fontSize: 20,
     // fontWeight: '600',

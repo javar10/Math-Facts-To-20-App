@@ -80,11 +80,11 @@ const styles = StyleSheet.create({
         backgroundColor: COLORS.secondary,
     },
     buttonText: {
-        color: COLORS.textPrimary,
+        color: COLORS.secondary,
         fontFamily: FONTS.bold,
         fontSize: 20,
     },
     resetButtonText: {
-        color: COLORS.textSecondary
+        color: COLORS.primary
     }
 });

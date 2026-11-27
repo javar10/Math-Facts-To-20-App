@@ -107,6 +107,6 @@ const styles = StyleSheet.create({
 
   bar: {
     height: '100%',
-    borderRadius: 6,
+    borderRadius: 16,
   },
 });

@@ -51,11 +51,11 @@ const styles = StyleSheet.create({
         borderRightColor: 'rgba(255, 245, 235, 0.12)',  // Subtle right highlight
     },
     buttonText: {
-        color: COLORS.textPrimary,
+        color: COLORS.secondary,
         fontFamily: FONTS.bold,
         fontSize: 20,
     },
     selectedButtonText: {
-        color: COLORS.textSecondary
+        color: COLORS.primary
     }
 })
