@@ -1,11 +1,11 @@
 export const difficultyOptions = ['beginner', 'easy', 'medium', 'hard', 'expert']
 
 const DEFAULT_DIFFICULTIES = {
-    beginner: 2,
-    easy: 7,
-    medium: 13,
-    hard: 17,
-    expert: 22,
+    beginner: 5,
+    easy: 8,
+    medium: 12,
+    hard: 20,
+    expert: 25,
 };
 
 const OPERATION_DIFFICULTIES = {
