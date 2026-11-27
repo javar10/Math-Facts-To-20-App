@@ -2,19 +2,19 @@ export const difficultyOptions = ['beginner', 'easy', 'medium', 'hard', 'expert'
 
 const DEFAULT_DIFFICULTIES = {
     beginner: 5,
-    easy: 8,
-    medium: 12,
-    hard: 20,
-    expert: 30,
+    easy: 10,
+    medium: 15,
+    hard: 30,
+    expert: 50,
 };
 
 const OPERATION_DIFFICULTIES = {
     addition: {
         beginner: 5,
-        easy: 10,
-        medium: 15,
-        hard: 20,
-        expert: 30,
+        easy: 12,
+        medium: 20,
+        hard: 40,
+        expert: 60,
     },
 };
 
