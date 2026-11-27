@@ -60,7 +60,7 @@ const styles = StyleSheet.create({
     borderRadius: 16,
     padding: 24,
     marginHorizontal: 16,
-    marginVertical: 8,
+    // marginVertical: 8,
     // iOS drop shadow
     shadowColor: '#000000',
     shadowOffset: { width: 0, height: 3 },

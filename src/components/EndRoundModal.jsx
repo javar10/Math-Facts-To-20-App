@@ -80,7 +80,7 @@ const styles = StyleSheet.create({
   title: {
     fontFamily: FONTS.bold,
     fontSize: 28,
-    fontWeight: '800',
+    // fontWeight: '800',
     color: COLORS.textPrimary,
     // marginBottom: 24,
     textAlign: 'center',
@@ -106,6 +106,7 @@ const styles = StyleSheet.create({
   primaryButton: {
     alignItems: 'center',
     backgroundColor: COLORS.primary,
+    fontFamily: FONTS.bold,
     paddingVertical: 10,
     paddingHorizontal: 24,
     borderRadius: 8,

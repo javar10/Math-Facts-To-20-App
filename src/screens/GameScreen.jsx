@@ -8,7 +8,7 @@ import TurkeyAnimation from '../components/TurkeyAnimation'
 import CountdownTimer from '../components/CountdownTimer'
 import EndRoundModal from '../components/EndRoundModal'
 import OptionsScreen from './OptionsScreen'
-import { COLORS } from '../constants/theme'
+import { COLORS, FONTS } from '../constants/theme'
 import { getDifficultyTargets } from '../constants/savedOptions'
 import PlayButtons from '../components/PlayButtons'
 import DURATION_SECONDS from '../constants/gameDuration'
@@ -120,6 +120,7 @@ const GameScreen = () => {
           </View>
           :
           <View style={styles.startScreenContainer}>
+
             <Image
               source={require('../assets/turkey_start.png')}
               style={styles.turkeyImage}
@@ -138,6 +139,7 @@ const GameScreen = () => {
               secondsLeft={secondsLeft}
               setSecondsLeft={setSecondsLeft}
             />
+            <Text style={styles.title}>Hurry! Hurry! Save the turkey!</Text>
             {!hasStarted ?
               <OptionsScreen
                 operation={operation}
@@ -176,14 +178,13 @@ const styles = StyleSheet.create({
   },
 
   homePlayControls: {
-    marginBottom: 20, // Extra space separating the button from OptionsScreen below it
+    // marginBottom: 20, // Extra space separating the button from OptionsScreen below it
   },
   homeStartButton: {
     backgroundColor: COLORS.accent,
     paddingVertical: 4,
     paddingHorizontal: 72,
     borderRadius: 12,
- 
   },
   homeStartButtonText: {
     fontSize: 48,
@@ -197,7 +198,13 @@ const styles = StyleSheet.create({
     alignItems: 'center',
     paddingVertical: 8,      // Small, guaranteed buffer from top and bottom edges
   },
-
+  title: {
+    fontFamily: FONTS.bold,
+    fontSize: 24,
+    color: COLORS.textPrimary,
+    textAlign: 'center',
+    marginVertical: 16,
+  },
 
   turkeyImage: {
     flex: 1,
