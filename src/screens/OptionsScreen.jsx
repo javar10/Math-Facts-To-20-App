@@ -55,7 +55,7 @@ export default OptionsScreen
 const styles = StyleSheet.create({
    optionsContainer: {
     alignSelf: 'center',
-    maxWidth: '85%',
+    maxWidth: '95%',
     backgroundColor: COLORS.background,
     borderRadius: 16,
     padding: 24,

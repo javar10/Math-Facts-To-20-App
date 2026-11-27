@@ -40,9 +40,11 @@ export default DifficultyButton;
 
 const styles = StyleSheet.create({
     button: {
+        width: 96,                    // Fits up to 5 feathers comfortably; keeps all 5 buttons identical
+        height: 40,                   // Consistent height across every button
+        justifyContent: 'center',     // Centers the feather row vertically
+        alignItems: 'center',         // Centers the feather row horizontally
         backgroundColor: COLORS.primary,
-        paddingVertical: 10,
-        paddingHorizontal: 24,
         borderRadius: 8,
 
         // Bevel
@@ -68,7 +70,6 @@ const styles = StyleSheet.create({
         borderBottomColor: 'rgba(255, 245, 235, 0.22)', // Soft warm bottom rim highlight
         borderRightColor: 'rgba(255, 245, 235, 0.12)',  // Subtle right highlight
 
-        // Optional: flatten out any outer drop shadow when selected so it feels truly recessed
         shadowOpacity: 0,
         elevation: 0,
     },
@@ -77,14 +78,5 @@ const styles = StyleSheet.create({
         alignItems: 'center',
         justifyContent: 'center',
         gap: 3,
-        // marginBottom: 4, // Small space between the feathers and the text label below
     },
-    // buttonText: {
-    //     color: COLORS.textPrimary,
-    //     fontFamily: FONTS.bold,
-    //     fontSize: 20,
-    // },
-    // selectedButtonText: {
-    //     color: COLORS.textSecondary
-    // }
-})
+});
