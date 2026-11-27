@@ -16,10 +16,7 @@ export const COLORS = {
     gradientStart: '#FFB347',
     gradientMiddle: '#580b02',
     gradientEnd: '#fee55f',
-    
-
-    // surface: '#FFFFFF',
-    // textInverse: '#FFFFFF',
+   
 };
 
 export const FONTS = {

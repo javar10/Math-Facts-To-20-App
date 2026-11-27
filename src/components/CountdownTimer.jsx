@@ -88,23 +88,11 @@ const styles = StyleSheet.create({
   track: {
     width: '100%',
     height: 36,
-    backgroundColor: '#EFE4D4', // Soft warm sand/tan fill
+    backgroundColor: '#EFE4D4',
     borderRadius: 16,
     overflow: 'hidden',
     marginBottom: 20,
-
-    // Warm recessed groove: soft caramel top/left shadow, creamy bottom/right highlight
-    // borderTopWidth: 2,
-    // borderLeftWidth: 1.5,
-    // borderBottomWidth: 1.5,
-    // borderRightWidth: 1,
-    // borderTopColor: '#C8B296',    // Muted warm tan shadow
-    // borderLeftColor: '#D6C3AA',   // Subtle warm side shadow
-    // borderBottomColor: '#FFFDF9', // Soft warm cream highlight
-    // borderRightColor: '#FAF3E8',  // Gentle right highlight
   },
-
-
   bar: {
     height: '100%',
     borderRadius: 16,

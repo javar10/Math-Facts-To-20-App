@@ -53,6 +53,7 @@ const GameScreen = () => {
     }
   }, [isTimeUp]);
 
+  // When restarting game:
   const handlePlayAgain = () => {
     setCorrectAnswers(0);
     setIsTimeUp(false);
@@ -70,7 +71,6 @@ const GameScreen = () => {
           roundResult={roundResult}
           correctAnswers={correctAnswers}
           onPlayAgain={handlePlayAgain}
-        // onExit={() => navigation?.goBack()}
         />
         {isRunning ?
           <View style={styles.gamePlayContainer}>
@@ -169,13 +169,13 @@ const styles = StyleSheet.create({
   screen: {
     flex: 1,
     justifyContent: 'space-between',
-    alignItems: 'center',     // Centers all children horizontally
+    alignItems: 'center', 
     paddingHorizontal: 20,
     paddingVertical: 12,
   },
   startScreenContainer: {
-    flex: 1,                  // Forces this whole block to stay within remaining screen height
-    minHeight: 0,             // Allows shrinking on smaller screens
+    flex: 1, 
+    minHeight: 0, 
     width: '100%',
     justifyContent: 'center',
     alignItems: 'center',
@@ -193,14 +193,13 @@ const styles = StyleSheet.create({
   homeStartButtonText: {
     fontSize: 48,
   },
-
   gamePlayContainer: {
-    flex: 1,                  // Strictly locks height to the screen's remaining space
-    minHeight: 0,             // Critical: allows TurkeyAnimation to shrink so bottom never overflows
+    flex: 1,  
+    minHeight: 0, 
     width: '100%',
-    justifyContent: 'space-evenly', // Adds balanced space at top, middle, and bottom without overflowing
+    justifyContent: 'space-evenly',
     alignItems: 'center',
-    paddingVertical: 8,      // Small, guaranteed buffer from top and bottom edges
+    paddingVertical: 8, 
   },
   title: {
     fontFamily: FONTS.bold,
@@ -209,13 +208,12 @@ const styles = StyleSheet.create({
     textAlign: 'center',
     marginVertical: 16,
   },
-
   turkeyImage: {
     flex: 1,
     width: '100%',
-    height: undefined, // Overrides the image's small native pixel height so it scales up
-    aspectRatio: 1,    // Adjust if your image isn't square (e.g., 3 / 4 or 4 / 3)
-    maxHeight: '65%',  // Prevents it from squeezing CountdownTimer at the bottom
+    height: undefined,
+    aspectRatio: 1, 
+    maxHeight: '65%', 
     alignSelf: 'center',
     padding: 24,
   },
@@ -225,13 +223,10 @@ const styles = StyleSheet.create({
     justifyContent: 'center',
     alignItems: 'center',
     gap: 16,
-    width: '100%',                     // Controls how wide the horizontal divider lines stretch
-    alignSelf: 'center',              // Centers the container and lines on the screen
-    paddingVertical: 8,              // Space between the top/bottom lines and the buttons
+    width: '100%', 
+    alignSelf: 'center',
+    paddingVertical: 8, 
     paddingHorizontal: 8,
-    // borderTopWidth: 1,                // Thin horizontal line above (or use StyleSheet.hairlineWidth)
-    // borderBottomWidth: 1,             // Thin horizontal line below
-    // borderColor: COLORS.textSecondary // Adjust to match your theme (e.g., COLORS.textSecondary)
   },
 
 })

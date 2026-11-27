@@ -1,10 +1,8 @@
 import { StyleSheet, Text, View } from 'react-native'
 import OperationButton from '../components/OperationButton'
-import { getDifficultyTargets, operationOptions, difficultyOptions } from '../constants/savedOptions'
+import { operationOptions, difficultyOptions } from '../constants/savedOptions'
 import DifficultyButton from '../components/DifficultyButton'
-import { useEffect } from 'react'
 import { COLORS, FONTS } from '../constants/theme'
-// import { getDifficultyTargets } from '../constants/savedOptions'
 
 const OptionsScreen = ({ operation, setOperation, difficulty, setDifficulty }) => {
 
@@ -33,19 +31,6 @@ const OptionsScreen = ({ operation, setOperation, difficulty, setDifficulty }) =
           />
         ))}
       </View>
-
-
-
-      {/* <Text>Difficulty</Text> */}
-      {/* <DifficultyButton /> */}
-
-
-      {/* game settings menu
-      -difficulty level
-      -5, 10, or 20
-      -addition, subtraction, or both
-      -start game button
-      */}
     </View>
   )
 }
@@ -53,14 +38,14 @@ const OptionsScreen = ({ operation, setOperation, difficulty, setDifficulty }) =
 export default OptionsScreen
 
 const styles = StyleSheet.create({
-   optionsContainer: {
+  optionsContainer: {
     alignSelf: 'center',
     maxWidth: '95%',
     backgroundColor: COLORS.background,
     borderRadius: 16,
     padding: 24,
     marginHorizontal: 16,
-    // marginVertical: 8,
+    gap: 12,
     // iOS drop shadow
     shadowColor: '#000000',
     shadowOffset: { width: 0, height: 3 },
@@ -68,24 +53,22 @@ const styles = StyleSheet.create({
     shadowRadius: 6,
     // Android drop shadow
     elevation: 5,
-    gap: 12,
   },
   title: {
     fontFamily: FONTS.bold,
     fontSize: 28,
     fontWeight: '800',
     color: COLORS.textPrimary,
-    // marginBottom: 24,
     textAlign: 'center',
     lineHeight: 36,
     marginTop: 8,
   },
   buttonContainer: {
     flexDirection: 'row',
-    justifyContent: 'center', // Centers the row horizontally
+    justifyContent: 'center',
     alignItems: 'center',
-    flexWrap: 'wrap',         // Wraps to a second line if buttons overflow narrow screens
-    gap: 10,                  // Adds even spacing between buttons
+    flexWrap: 'wrap',
+    gap: 10,
     marginBottom: 8,
   },
 })

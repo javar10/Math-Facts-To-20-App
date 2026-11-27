@@ -1,7 +1,6 @@
-import React from 'react';
-import { TouchableOpacity, View, Text, StyleSheet } from 'react-native';
+import { TouchableOpacity, View, StyleSheet } from 'react-native';
 import FontAwesome5 from '@expo/vector-icons/FontAwesome5';
-import { COLORS, FONTS } from '../constants/theme';
+import { COLORS } from '../constants/theme';
 
 const FEATHER_COUNTS = {
     beginner: 1,
@@ -14,7 +13,7 @@ const FEATHER_COUNTS = {
 const DifficultyButton = ({ label, difficulty, setDifficulty }) => {
     const isSelected = label === difficulty;
     const featherCount = FEATHER_COUNTS[label] || 1;
-    const iconColor = isSelected ? COLORS.primary : COLORS.secondary; // Flips color when selected
+    const iconColor = isSelected ? COLORS.primary : COLORS.secondary;
 
     return (
         <TouchableOpacity
@@ -40,10 +39,10 @@ export default DifficultyButton;
 
 const styles = StyleSheet.create({
     button: {
-        width: 96,                    // Fits up to 5 feathers comfortably; keeps all 5 buttons identical
-        height: 40,                   // Consistent height across every button
-        justifyContent: 'center',     // Centers the feather row vertically
-        alignItems: 'center',         // Centers the feather row horizontally
+        width: 96, 
+        height: 40,
+        justifyContent: 'center', 
+        alignItems: 'center',         
         backgroundColor: COLORS.primary,
         borderRadius: 8,
 
@@ -52,26 +51,23 @@ const styles = StyleSheet.create({
         borderLeftWidth: 1.5,
         borderBottomWidth: 2,
         borderRightWidth: 1.5,
-        borderTopColor: '#FFF6EB',    // Soft warm-cream top highlight
-        borderLeftColor: '#FFECD6',   // Subtle left highlight
-        borderBottomColor: '#D69F63', // Warm toasted-caramel bottom lip
-        borderRightColor: '#E3B27B',  // Subtle right edge
+        borderTopColor: '#FFF6EB',    
+        borderLeftColor: '#FFECD6',   
+        borderBottomColor: '#D69F63', 
+        borderRightColor: '#E3B27B',  
     },
     selectedButton: {
         backgroundColor: COLORS.secondary,
 
-        // Subtle pressed-in bevel for dark burgundy/brown (#580b02)
+        // Bevel
         borderTopWidth: 2,
         borderLeftWidth: 1.5,
         borderBottomWidth: 1.5,
         borderRightWidth: 1,
-        borderTopColor: 'rgba(15, 2, 0, 0.55)',       // Deep warm shadow along top edge
-        borderLeftColor: 'rgba(15, 2, 0, 0.30)',      // Subtle left shadow
-        borderBottomColor: 'rgba(255, 245, 235, 0.22)', // Soft warm bottom rim highlight
-        borderRightColor: 'rgba(255, 245, 235, 0.12)',  // Subtle right highlight
-
-        shadowOpacity: 0,
-        elevation: 0,
+        borderTopColor: 'rgba(15, 2, 0, 0.55)',       
+        borderLeftColor: 'rgba(15, 2, 0, 0.30)',     
+        borderBottomColor: 'rgba(255, 245, 235, 0.22)', 
+        borderRightColor: 'rgba(255, 245, 235, 0.12)',  
     },
     featherRow: {
         flexDirection: 'row',

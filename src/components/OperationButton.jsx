@@ -1,4 +1,3 @@
-import React from 'react';
 import { StyleSheet, TouchableOpacity } from 'react-native';
 import FontAwesome5 from '@expo/vector-icons/FontAwesome5';
 import { COLORS } from '../constants/theme';
@@ -11,10 +10,8 @@ const OperationButton = ({ label, operation, setOperation }) => {
 
     const handlePress = () => {
         if (isSelected) {
-            // If both were active, keep the other one; if only this one was active, deselect all (null)
             setOperation(operation === 'both' ? otherOperation : null);
         } else {
-            // If the other one was active, make it 'both'; otherwise select just this one
             setOperation(operation === otherOperation ? 'both' : label);
         }
     };
@@ -45,10 +42,10 @@ const styles = StyleSheet.create({
         borderLeftWidth: 1.5,
         borderBottomWidth: 2,
         borderRightWidth: 1.5,
-        borderTopColor: '#FFF6EB',    // Soft warm-cream top highlight
-        borderLeftColor: '#FFECD6',   // Subtle left highlight
-        borderBottomColor: '#D69F63', // Warm toasted-caramel bottom lip
-        borderRightColor: '#E3B27B',  // Subtle right edge
+        borderTopColor: '#FFF6EB',
+        borderLeftColor: '#FFECD6',
+        borderBottomColor: '#D69F63',
+        borderRightColor: '#E3B27B',
     },
     selectedButton: {
         backgroundColor: COLORS.secondary,
@@ -58,9 +55,9 @@ const styles = StyleSheet.create({
         borderLeftWidth: 1.5,
         borderBottomWidth: 1.5,
         borderRightWidth: 1,
-        borderTopColor: 'rgba(15, 2, 0, 0.55)',       // Deep warm shadow along top edge
-        borderLeftColor: 'rgba(15, 2, 0, 0.30)',      // Subtle left shadow
-        borderBottomColor: 'rgba(255, 245, 235, 0.22)', // Soft warm bottom rim highlight
-        borderRightColor: 'rgba(255, 245, 235, 0.12)',  // Subtle right highlight
+        borderTopColor: 'rgba(15, 2, 0, 0.55)', 
+        borderLeftColor: 'rgba(15, 2, 0, 0.30)', 
+        borderBottomColor: 'rgba(255, 245, 235, 0.22)', 
+        borderRightColor: 'rgba(255, 245, 235, 0.12)', 
     },
 });

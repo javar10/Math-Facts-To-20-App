@@ -1,10 +1,5 @@
-import React, { useEffect, useRef, useState } from 'react';
-import {
-  View,
-  Image,
-  Animated,
-  StyleSheet,
-} from 'react-native';
+import { useEffect, useRef, useState } from 'react';
+import { View, Image, Animated, StyleSheet } from 'react-native';
 import { COLORS } from '../constants/theme';
 
 const BACKGROUND_IMAGE = require('../assets/background.png');
@@ -15,7 +10,6 @@ const TurkeyAnimation = ({ correctAnswers, targetNumber }) => {
   const { width: imgW, height: imgH } = Image.resolveAssetSource(BACKGROUND_IMAGE);
   const aspectRatio = imgW / imgH;
 
-  // Fill as much of the available space as possible without overflowing width or height
   let frameWidth = availableSize.width;
   let frameHeight = frameWidth / aspectRatio;
 
@@ -24,9 +18,9 @@ const TurkeyAnimation = ({ correctAnswers, targetNumber }) => {
     frameWidth = frameHeight * aspectRatio;
   }
 
-  const START_BOTTOM = frameHeight * 0.2;      // 20% up from the bottom
-  const END_BOTTOM = frameHeight * 0.76;       // Stops at 76% up from the bottom
-  const START_TURKEY_SIZE = frameWidth * 0.8;  // Keeps the head inside the frame at start
+  const START_BOTTOM = frameHeight * 0.2; 
+  const END_BOTTOM = frameHeight * 0.76; 
+  const START_TURKEY_SIZE = frameWidth * 0.8;  
 
   const safeDifficulty = targetNumber > 0 ? targetNumber : 10;
   const targetProgress = Math.min(Math.max(correctAnswers / safeDifficulty, 0), 1);
@@ -42,7 +36,7 @@ const TurkeyAnimation = ({ correctAnswers, targetNumber }) => {
   }, [targetProgress]);
 
   const animatedSize = animatedProgress.interpolate({
-    inputRange:[0, 1],
+    inputRange: [0, 1],
     outputRange: [START_TURKEY_SIZE, 0],
   });
 
@@ -96,12 +90,12 @@ export default TurkeyAnimation;
 
 const styles = StyleSheet.create({
   flexWrapper: {
-    flex: 1,                  // Takes up ALL leftover vertical space—maximizing the image
-    minHeight: 0,             // Allows shrinking on short screens so bottom buttons never clip
+    flex: 1, 
+    minHeight: 0, 
     width: '100%',
     justifyContent: 'center',
     alignItems: 'center',
-    marginVertical: 6,        // Small clean breathing room above and below the frame
+    marginVertical: 6,
   },
   container: {
     alignItems: 'center',
