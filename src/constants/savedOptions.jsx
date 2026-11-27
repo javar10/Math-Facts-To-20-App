@@ -5,7 +5,7 @@ const DEFAULT_DIFFICULTIES = {
     easy: 8,
     medium: 12,
     hard: 20,
-    expert: 25,
+    expert: 30,
 };
 
 const OPERATION_DIFFICULTIES = {
@@ -14,7 +14,7 @@ const OPERATION_DIFFICULTIES = {
         easy: 10,
         medium: 15,
         hard: 20,
-        expert: 25,
+        expert: 30,
     },
 };
 
