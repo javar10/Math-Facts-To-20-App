@@ -1,5 +1,6 @@
 import { useEffect, useRef, useState } from 'react';
 import { View, Image, Animated, StyleSheet } from 'react-native';
+import { Asset } from 'expo-asset';
 import { COLORS } from '../constants/theme';
 
 const BACKGROUND_IMAGE = require('../assets/background.png');
@@ -7,7 +8,9 @@ const BACKGROUND_IMAGE = require('../assets/background.png');
 const TurkeyAnimation = ({ correctAnswers, targetNumber }) => {
   const [availableSize, setAvailableSize] = useState({ width: 0, height: 0 });
 
-  const { width: imgW, height: imgH } = Image.resolveAssetSource(BACKGROUND_IMAGE);
+  const asset = Asset.fromModule(BACKGROUND_IMAGE);
+  const imgW = asset.width ?? 1;
+  const imgH = asset.height ?? 1;
   const aspectRatio = imgW / imgH;
 
   let frameWidth = availableSize.width;
@@ -18,9 +21,9 @@ const TurkeyAnimation = ({ correctAnswers, targetNumber }) => {
     frameWidth = frameHeight * aspectRatio;
   }
 
-  const START_BOTTOM = frameHeight * 0.2; 
-  const END_BOTTOM = frameHeight * 0.76; 
-  const START_TURKEY_SIZE = frameWidth * 0.8;  
+  const START_BOTTOM = frameHeight * 0.2;
+  const END_BOTTOM = frameHeight * 0.76;
+  const START_TURKEY_SIZE = frameWidth * 0.8;
 
   const safeDifficulty = targetNumber > 0 ? targetNumber : 10;
   const targetProgress = Math.min(Math.max(correctAnswers / safeDifficulty, 0), 1);
@@ -90,8 +93,8 @@ export default TurkeyAnimation;
 
 const styles = StyleSheet.create({
   flexWrapper: {
-    flex: 1, 
-    minHeight: 0, 
+    flex: 1,
+    minHeight: 0,
     width: '100%',
     justifyContent: 'center',
     alignItems: 'center',
